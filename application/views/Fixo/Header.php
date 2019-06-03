@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Cadastro de Prova</title>
+        <title>Cadastro de Montadora</title>
         <link href="<?= base_url('Incluir/Bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url('Incluir/FontAwesome.css') ?>" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
@@ -24,34 +24,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                        <a href="#" id="menuProvas" class="nav-link dropdown-toggle" data-toggle="dropdown">Provas</a>
-                        <div class="dropdown-menu" aria-labelledby="menuProvas">
-                            <a href="<?= $this->config->base_url() . 'Prova/listar'; ?>" class="dropdown-item">Listar</a>
-                            <a href="<?= $this->config->base_url() . 'Prova/cadastrar'; ?>" class="dropdown-item">Cadastrar</a>
+                        <a href="#" id="menuMontadoras" class="nav-link dropdown-toggle" data-toggle="dropdown">Montadoras</a>
+                        <div class="dropdown-menu" aria-labelledby="menuMontadoras">
+                            <a href="<?= $this->config->base_url() . 'Montadora/listar'; ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= $this->config->base_url() . 'Montadora/cadastrar'; ?>" class="dropdown-item">Cadastrar</a>
                         </div>
                     </li>      
-                    <li class="nav-item dropdown">
-                        <a href="#" id="menuEquipes" class="nav-link dropdown-toggle" data-toggle="dropdown">Equipes</a>
-                        <div class="dropdown-menu" aria-labelledby="menuEquipes">
-                            <a href="<?= $this->config->base_url() . 'Equipe/listar'; ?>" class="dropdown-item">Listar</a>
-                            <a href="<?= $this->config->base_url() . 'Equipe/cadastrar'; ?>" class="dropdown-item">Cadastrar</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" id="menuIntegrantes" class="nav-link dropdown-toggle" data-toggle="dropdown">Integrantes</a>
-                        <div class="dropdown-menu" aria-labelledby="menuIntegrantes">
-                            <a href="<?= $this->config->base_url() . 'Integrante/listar'; ?>" class="dropdown-item">Listar</a>
-                            <a href="<?= $this->config->base_url() . 'Integrante/cadastrar'; ?>" class="dropdown-item">Cadastrar</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" id="menupontos" class="nav-link dropdown-toggle" data-toggle="dropdown">Pontuação</a>
-                        <div class="dropdown-menu" aria-labelledby="menupontos">
-                            <a href="<?= $this->config->base_url() . 'pontuacao/listarRank'; ?>" class="dropdown-item">Ranking</a>
-                            <a href="<?= $this->config->base_url() . 'pontuacao/listar'; ?>" class="dropdown-item">Listar</a>
-                            <a href="<?= $this->config->base_url() . 'pontuacao/cadastrar'; ?>" class="dropdown-item">Cadastrar</a>
-                        </div>
-                    </li>
                 </ul>
 
                 <ul class="navbar-nav justify-content-end">
