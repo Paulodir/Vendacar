@@ -27,7 +27,7 @@
                         <a href="#" id="menuMontadoras" class="nav-link dropdown-toggle" data-toggle="dropdown">Montadoras</a>
                         <div class="dropdown-menu" aria-labelledby="menuMontadoras">
                             <a href="<?= $this->config->base_url() . 'Montadora/listar'; ?>" class="dropdown-item">Listar</a>
-                            <a href="<?= $this->config->base_url() . 'Montadora/cadastrar'; ?>" class="dropdown-item">Cadastrar</a>
+                            <a href="<?= base_url('Montadora/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
                         </div>
                     </li>      
                 </ul>
