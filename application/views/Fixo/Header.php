@@ -16,7 +16,7 @@
         <nav class="navbar navbar-light navbar-expand-md" style="background-color: #e3f2fd;">
             <a class="navbar-brand" href="<?= $this->config->base_url(); ?>">
                 <img src="<?= base_url('Incluir/mao.png') ?>" width="30" height="30" class="d-inline-block align-top" alt="">
-                Sistema Gincana
+                Sistema Vendacar
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
