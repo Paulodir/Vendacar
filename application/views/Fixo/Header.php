@@ -15,8 +15,8 @@
     <body>
         <nav class="navbar navbar-light navbar-expand-md" style="background-color: #e3f2fd;">
             <a class="navbar-brand" href="<?= $this->config->base_url(); ?>">
-                <img src="<?= base_url('Incluir/mao.png') ?>" width="30" height="30" class="d-inline-block align-top" alt="">
-                Sistema Vendacar
+                <img src="<?= base_url('Incluir/logo.png') ?>" width="110" height="55" class="d-inline-block align-top" alt="">
+                Vendacar
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,21 @@
                             <a href="<?= $this->config->base_url() . 'Montadora/listar'; ?>" class="dropdown-item">Listar</a>
                             <a href="<?= base_url('Montadora/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
                         </div>
-                    </li>      
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuModelos" class="nav-link dropdown-toggle" data-toggle="dropdown">Modelos</a>
+                        <div class="dropdown-menu" aria-labelledby="menuModelos">
+                            <a href="<?= $this->config->base_url() . 'Modelo/listar'; ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('Modelo/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuVeiculos" class="nav-link dropdown-toggle" data-toggle="dropdown">Veiculos</a>
+                        <div class="dropdown-menu" aria-labelledby="menuVeiculos">
+                            <a href="<?= $this->config->base_url() . 'Veiculo/listar'; ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('Veiculo/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav justify-content-end">

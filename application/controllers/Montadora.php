@@ -22,7 +22,7 @@ class Montadora extends CI_Controller {
 
     public function listar() {
 
-        $data['montadoras'] = $this->Montadora_Model->getAll('*,(SELECT COUNT(montadora_id) FROM modelo WHERE montadora_id=montadora.id) as utilizados');
+        $data['montadoras'] = $this->Montadora_Model->getAll('*,(SELECT COUNT(montadora_id) FROM modelo WHERE montadora_id=montadora.id) AS montadoraEmUso');
         $this->load->view('Fixo/Header');
         $this->load->view('Montadora/ListaMontadoras', $data);
         $this->load->view('Fixo/Footer');
@@ -32,9 +32,9 @@ class Montadora extends CI_Controller {
         $this->form_validation->set_rules('Nome', 'Nome', 'required');
 
         if ($this->form_validation->run() == false) {
-            //$this->load->view('Fixo/Header');
+            $this->load->view('Fixo/Header');
             $this->load->view('Montadora/FormularioMontadora');
-            //$this->load->view('Fixo/Footer');
+            $this->load->view('Fixo/Footer');
         } else {
             $data = array(
                 'nomeMontadora' => $this->input->post('Nome'),
@@ -92,7 +92,7 @@ class Montadora extends CI_Controller {
         redirect('Montadora/listar');
     }
 
-    public function mensagem() {
+    public function indisponivel() {
         $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel deletar montadoras com modelos cadastrados. Caso desejar deletar esta montadora exclua primeiramente os modelos...</div>');
         redirect('Montadora/listar');
     }
