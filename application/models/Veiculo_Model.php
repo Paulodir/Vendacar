@@ -15,14 +15,33 @@ class Veiculo_Model extends CI_Model {
         //echo $this->db->last_query();exit; 
         return $query->result();
     }
+
     public function getMontadoras() {
         $query = $this->db->get('Montadora');
         return $query->result();
     }
 
-    public function getModelos() {
+    //public function getModelos() {
+    //$query = $this->db->get('modelo');
+    // return $query->result();
+    //}
+
+    public function getModelosByMontadora($montadora_id = null) {
+        $this->db->where('montadora_id', $montadora_id);
+        $this->db->order_by('nomeModelo');
         $query = $this->db->get('modelo');
-        return $query->result();
+        //echo $this->db->last_query();exit; 
+        return $query->result();;
+    }
+
+    public function selectModelos($montadora_id = null) {
+        $modelos = $this->getModelosByMontadora($montadora_id);
+        $options = '<option>Selecione o Modelo</option>';
+        foreach ($modelos as $modelo) {
+            $options .= '<option value=' . $modelo->id . '">' . $modelo->nomeModelo . '</option>' . PHP_EOL;
+        }
+        return $options;
+        //$this->db->last_query();exit;
     }
 
     public function insert($data = array()) {

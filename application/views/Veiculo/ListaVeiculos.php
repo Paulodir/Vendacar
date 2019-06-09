@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= $this->config->base_url(); ?>">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Lista de Veiculos</li>
+            <li class="breadcrumb-item active" aria-current="page">Lista de Veículos</li>
         </ol>
     </nav> 
     <?= ($this->session->flashdata('retorno')) ? $this->session->flashdata('retorno') : ''; ?>

@@ -10,7 +10,7 @@ class Modelo_Model extends CI_Model {
         $this->db->from(self::table);
         $this->db->join('montadora', 'montadora.id = modelo.montadora_id', 'inner');
         //nome da tabela no banco de dados  
-        $this->db->order_by('montadora_id');
+        $this->db->order_by('nomeMontadora');
         $query = $this->db->get();
         //echo $this->db->last_query();exit; 
         //result já nos retorna em formato de array
