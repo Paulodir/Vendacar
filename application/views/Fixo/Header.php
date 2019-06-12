@@ -44,7 +44,36 @@
                             <a href="<?= base_url('Veiculo/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuClientes" class="nav-link dropdown-toggle" data-toggle="dropdown">Clientes</a>
+                        <div class="dropdown-menu" aria-labelledby="menuClientes">
+                            <a href="<?= base_url('Cliente/listar'); ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('Cliente/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuSetores" class="nav-link dropdown-toggle" data-toggle="dropdown">Setores</a>
+                        <div class="dropdown-menu" aria-labelledby="menuSetores">
+                            <a href="<?= base_url('Setor/listar'); ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('Setor/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuFuncionarios" class="nav-link dropdown-toggle" data-toggle="dropdown">Funcionários</a>
+                        <div class="dropdown-menu" aria-labelledby="menuFuncionarios">
+                            <a href="<?= base_url('Funcionario/listar'); ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('Funcionario/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuAcessorios" class="nav-link dropdown-toggle" data-toggle="dropdown">Acessórios</a>
+                        <div class="dropdown-menu" aria-labelledby="menuAcessorios">
+                            <a href="<?= base_url('Acessorio/listar'); ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('Acessorio/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
                 </ul>
+
 
                 <ul class="navbar-nav justify-content-end">
                     <li class="nav-item">

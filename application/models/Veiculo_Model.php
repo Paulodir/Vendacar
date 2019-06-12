@@ -17,21 +17,22 @@ class Veiculo_Model extends CI_Model {
     }
 
     public function getMontadoras() {
-        $query = $this->db->get('Montadora');
+        $query = $this->db->get('montadora');
         return $query->result();
     }
 
-    //public function getModelos() {
-    //$query = $this->db->get('modelo');
-    // return $query->result();
-    //}
+    public function getModelos() {
+        $query = $this->db->get('modelo');
+        return $query->result();
+    }
 
     public function getModelosByMontadora($montadora_id = null) {
         $this->db->where('montadora_id', $montadora_id);
         $this->db->order_by('nomeModelo');
         $query = $this->db->get('modelo');
         //echo $this->db->last_query();exit; 
-        return $query->result();;
+        return $query->result();
+        ;
     }
 
     public function selectModelos($montadora_id = null) {
@@ -50,7 +51,12 @@ class Veiculo_Model extends CI_Model {
     }
 
     public function getOne($id) {
-        $query = $this->db->get_where(self::table, array('id' => $id));
+        $this->db->select('veiculo.*,');
+        $this->db->select('(SELECT montadora_id WHERE modelo_id=modelo.id) AS montadora_id');
+        $this->db->join('modelo', 'modelo.id = veiculo.modelo_id', 'inner');
+        $this->db->join('montadora', 'montadora.id=modelo.montadora_id', 'inner');
+        $query = $this->db->get_where(self::table, array('veiculo.id' => $id));
+        //echo $this->db->last_query();exit; 
         return $query->row();
     }
 

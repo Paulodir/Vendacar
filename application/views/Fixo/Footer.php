@@ -29,6 +29,10 @@
                 }
             }
         });
+        setTimeout(function () {
+            $('.alert').html('');
+            $('.alert').removeClass();
+        }, 6500);
     });
 </script>
 <!--

@@ -57,7 +57,47 @@ class Veiculo extends CI_Controller {
         }
     }
 
-    
+    public function getModelosAjax() {
+        $montadora_id = $this->input->post('montadora_id');
+        echo $this->Veiculo_Model->selectModelos($montadora_id);
+    }
+
+    public function alterar($id) {
+        if ($id > 0) {
+            $this->form_validation->set_rules('Modelo', 'Modelo', 'required');
+            $this->form_validation->set_rules('Montadora', 'Montadora', 'required');
+            $this->form_validation->set_rules('Ano', 'Ano', 'required');
+            $this->form_validation->set_rules('Cor', 'Cor', 'required');
+            $this->form_validation->set_rules('Renavam', 'Renavam', 'required');
+            $this->form_validation->set_rules('Valor', 'Valor', 'required');
+            if ($this->form_validation->run() == false) {
+                $data['veiculo'] = $this->Veiculo_Model->getOne($id);
+                $data['montadoras'] = $this->Veiculo_Model->getMontadoras();
+                $data['modelos'] = $this->Veiculo_Model->getModelos();
+                $this->load->view('Fixo/Header');
+                $this->load->view('Veiculo/FormularioVeiculo', $data);
+                $this->load->view('Fixo/Footer');
+            } else {
+                $data = array(
+                    'modelo_id' => $this->input->post('Modelo'),
+                    'Ano' => $this->input->post('Ano'),
+                    'cor' => $this->input->post('Cor'),
+                    'renavam' => $this->input->post('Renavam'),
+                    'valorVeiculo' => $this->input->post('Valor')
+                );
+                if ($this->Veiculo_Model->update($id, $data)) {
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veiculo alterado com sucesso!</div>');
+                    redirect('Veiculo/listar');
+                } else {
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar Veiculo...</div>');
+                    redirect('Veiculo/alterar/' . $id);
+                }
+            }
+        } else {
+            redirect('Veiculo/listar');
+        }
+    }
+
     public function deletar($id) {
         if ($id > 0) {
             if ($this->Veiculo_Model->delete($id)) {
@@ -73,8 +113,5 @@ class Veiculo extends CI_Controller {
         $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel deletar Veículos que estão inseridos em Notas Fiscais cadastradas. Caso desejar deletar este Veículo verifique se há alguma nota fiscal de saida do mesmo</div>');
         redirect('Veiculo/listar');
     }
-    public function getModelos() {
-        $montadora_id=$this->input->post('montadora_id');
-        echo $this->Veiculo_Model->selectModelos($montadora_id);
-    }
+
 }
