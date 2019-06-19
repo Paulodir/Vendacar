@@ -1,15 +1,24 @@
 <?php
 
-class Acessorio_Model extends CI_Model {
+class NotaFiscal_Model extends CI_Model {
 
-    const table = 'acessorio';
+    const table = 'notafiscal';
 
     public function getAll() {
-        $this->db->select('acessorio.*');
+        $this->db->select("notafiscal.*");
+        //(SELECT COUNT(modelo_id) FROM veiculo WHERE modelo_id=modelo.id) as ModeloEmUso
         $this->db->from(self::table);
-        $this->db->order_by('descricaoAcessorio');
+//        $this->db->join('montadora', 'montadora.id = modelo.montadora_id', 'inner');
+//        //nome da tabela no banco de dados  
+//        $this->db->order_by('nomeMontadora');
         $query = $this->db->get();
         //echo $this->db->last_query();exit; 
+        //result já nos retorna em formato de array
+        return $query->result();
+    }
+
+    public function getMontadoras() {
+        $query = $this->db->get('montadora');
         return $query->result();
     }
 
@@ -37,7 +46,6 @@ class Acessorio_Model extends CI_Model {
         if ($id > 0) {
             $this->db->where('id', $id);
             $this->db->delete(self::table);
-
             return $this->db->affected_rows();
         } else {
             return false;

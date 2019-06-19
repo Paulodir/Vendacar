@@ -6,7 +6,7 @@ class Cliente_Model extends CI_Model {
 
     public function getAll() {
         $this->db->select('cliente.*,');
-        $this->db->select('((SELECT COUNT(cliente_id) FROM funcionario WHERE cliente_id=cliente.id)+(SELECT COUNT(cliente_id) FROM notafiscal WHERE cliente_id=cliente.id)) as clienteEmUso');
+        $this->db->select('(SELECT COUNT(cliente_id) FROM notafiscal WHERE cliente_id=cliente.id) as clienteEmUso');
         $this->db->from(self::table);
         $query = $this->db->get();
         //echo $this->db->last_query();exit; 

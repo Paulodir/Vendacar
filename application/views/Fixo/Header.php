@@ -72,6 +72,13 @@
                             <a href="<?= base_url('Acessorio/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuFormasPagamento" class="nav-link dropdown-toggle" data-toggle="dropdown">Formas de Pagamento</a>
+                        <div class="dropdown-menu" aria-labelledby="menuFormasPagamento">
+                            <a href="<?= base_url('FormaPagamento/listar'); ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('FormaPagamento/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
                 </ul>
 
 

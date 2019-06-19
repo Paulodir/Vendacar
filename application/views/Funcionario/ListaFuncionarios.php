@@ -17,7 +17,7 @@
                     <th>Gênero</th>
                     <th>Nascimento</th>
                     <th>Endereço</th>
-                    <th>Bairro</th>
+            
                     <th>Cidade</th>
                     <th>Estado</th>
                     <th>Celular</th>
@@ -44,7 +44,7 @@
                         echo '</td>';
                         echo '<td>' . $f->dataNascimento . '</td>';
                         echo '<td>' . $f->endereco . '</td>';
-                        echo '<td>' . $f->bairro . '</td>';
+                      
                         echo '<td>' . $f->cidade . '</td>';
                         echo '<td>' . $f->estado . '</td>';
                         echo '<td>' . $f->celular . '</td>';

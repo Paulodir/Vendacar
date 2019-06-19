@@ -1,13 +1,13 @@
 <?php
 
-class Acessorio_Model extends CI_Model {
+class FormaPagamento_Model extends CI_Model {
 
-    const table = 'acessorio';
+    const table = 'formapagamento';
 
     public function getAll() {
-        $this->db->select('acessorio.*');
+        $this->db->select('formapagamento.*,');
+        $this->db->select('(SELECT COUNT(formaPagamento_id) FROM notafiscal WHERE formaPagamento_id=formapagamento.id) as formaPagamentoEmUso');
         $this->db->from(self::table);
-        $this->db->order_by('descricaoAcessorio');
         $query = $this->db->get();
         //echo $this->db->last_query();exit; 
         return $query->result();

@@ -5,12 +5,12 @@ class Veiculo_Model extends CI_Model {
     const table = 'veiculo';
 
     public function getAll() {
-        $this->db->select("veiculo.*,CONCAT(nomeMontadora, ' ',nomeModelo) AS 'Veiculo',(SELECT COUNT(veiculo_id) FROM notafiscal WHERE veiculo_id=veiculo.id) as veiculoEmUso");
-        //(SELECT COUNT(modelo_id) FROM veiculo WHERE veiculo_id=veiculo.id) as ModeloEmUso
+        $this->db->select("veiculo.*,CONCAT(nomeMontadora, ' ',nomeModelo) AS 'nomeVeiculo',");
+        $this->db->select("(SELECT COUNT(veiculo_id) FROM notafiscal WHERE veiculo_id=veiculo.id) as veiculoEmUso");
         $this->db->from(self::table);
         $this->db->join('modelo', 'modelo.id = veiculo.modelo_id', 'inner');
         $this->db->join('montadora', 'montadora.id=modelo.montadora_id', 'inner');
-        $this->db->order_by('modelo_id');
+        $this->db->order_by('nomeVeiculo');
         $query = $this->db->get();
         //echo $this->db->last_query();exit; 
         return $query->result();
@@ -32,17 +32,6 @@ class Veiculo_Model extends CI_Model {
         $query = $this->db->get('modelo');
         //echo $this->db->last_query();exit; 
         return $query->result();
-        ;
-    }
-
-    public function selectModelos($montadora_id = null) {
-        $modelos = $this->getModelosByMontadora($montadora_id);
-        $options = '<option>Selecione o Modelo</option>';
-        foreach ($modelos as $modelo) {
-            $options .= '<option value=' . $modelo->id . '">' . $modelo->nomeModelo . '</option>' . PHP_EOL;
-        }
-        return $options;
-        //$this->db->last_query();exit;
     }
 
     public function insert($data = array()) {
@@ -51,7 +40,7 @@ class Veiculo_Model extends CI_Model {
     }
 
     public function getOne($id) {
-        $this->db->select('veiculo.*,');
+        $this->db->select("veiculo.*,CONCAT(nomeMontadora,' ',nomeModelo) AS 'nomeVeiculo',");
         $this->db->select('(SELECT montadora_id WHERE modelo_id=modelo.id) AS montadora_id');
         $this->db->join('modelo', 'modelo.id = veiculo.modelo_id', 'inner');
         $this->db->join('montadora', 'montadora.id=modelo.montadora_id', 'inner');
@@ -81,4 +70,29 @@ class Veiculo_Model extends CI_Model {
         }
     }
 
+    public function getAcessoriosByVeiculo($veiculo_id=null) {
+        $this->db->select('veiculoacessorio.*,');
+        $this->db->select('acessorio.descricaoAcessorio, acessorio.tipoAcessorio, acessorio.valorAcessorio');
+        $this->db->from(self::table);
+        $this->db->join('veiculoacessorio', 'veiculoacessorio.veiculo_id=veiculo.id', 'left');
+        $this->db->join('acessorio', 'veiculoacessorio.acessorio_id=acessorio.id', 'left');
+        $this->db->where('veiculo_id', $veiculo_id);
+        $query = $this->db->get();
+        //echo $this->db->last_query();exit;
+        return $query->result();
+    }
+    public function deleteAcessorios($id) {
+        if ($id > 0) {
+            $this->db->where('id', $id);
+            $this->db->delete('veiculoacessorio');
+           //echo $this->db->last_query();exit;
+            return $this->db->affected_rows();
+        } else {
+            return false;
+        }
+    }
+    public function insertAcessorios($data = array()) {
+        $this->db->insert('veiculoacessorio', $data);
+        return $this->db->affected_rows();
+    }
 }
