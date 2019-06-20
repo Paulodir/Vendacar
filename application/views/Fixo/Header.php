@@ -79,6 +79,13 @@
                             <a href="<?= base_url('FormaPagamento/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" id="menuNotasFiscais" class="nav-link dropdown-toggle" data-toggle="dropdown">Notas Fiscais</a>
+                        <div class="dropdown-menu" aria-labelledby="menuNotasFiscais">
+                            <a href="<?= base_url('NotaFiscal/listar'); ?>" class="dropdown-item">Listar</a>
+                            <a href="<?= base_url('NotaFiscal/cadastrar'); ?>" class="dropdown-item">Cadastrar</a>
+                        </div>
+                    </li>
                 </ul>
 
 

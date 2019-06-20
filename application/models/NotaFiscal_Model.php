@@ -6,13 +6,20 @@ class NotaFiscal_Model extends CI_Model {
 
     public function getAll() {
         $this->db->select("notafiscal.*");
+        $this->db->select(",CONCAT(nomeMontadora, ' ',nomeModelo) AS 'nomeVeiculo'");
+        $this->db->select(",funcionario.nomeFuncionario");
+        $this->db->select(",cliente.nomeCliente");
         //(SELECT COUNT(modelo_id) FROM veiculo WHERE modelo_id=modelo.id) as ModeloEmUso
         $this->db->from(self::table);
-//        $this->db->join('montadora', 'montadora.id = modelo.montadora_id', 'inner');
-//        //nome da tabela no banco de dados  
-//        $this->db->order_by('nomeMontadora');
+        $this->db->join('funcionario', 'funcionario.id = notafiscal.funcionario_id', 'inner');
+        $this->db->join('cliente', 'cliente.id = notafiscal.cliente_id', 'inner');
+        $this->db->join('veiculo', 'veiculo.id = notafiscal.veiculo_id', 'inner');
+        $this->db->join('modelo', 'modelo.id = veiculo.modelo_id', 'inner');
+        $this->db->join('montadora', 'montadora.id = modelo.montadora_id', 'inner');
+        //nome da tabela no banco de dados  
+        $this->db->order_by('notafiscal.id');
         $query = $this->db->get();
-        //echo $this->db->last_query();exit; 
+        //echo $this->db->last_query();exit;
         //result já nos retorna em formato de array
         return $query->result();
     }

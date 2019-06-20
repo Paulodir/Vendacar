@@ -16,7 +16,7 @@ class Usuario extends CI_Controller {
  
         if ($this->form_validation->run() == false) {
 
-            $this->load->view('Login');
+            $this->load->view('Usuario/Login');
         } else {
             $this->load->model('Usuario_model');
             $email = $this->input->post('email');

@@ -6,13 +6,14 @@
         </ol>
     </nav> 
     <?= ($this->session->flashdata('retorno')) ? $this->session->flashdata('retorno') : ''; ?>
-    <?= validation_errors(); ?>
+    <?= validation_errors(); // var_dump($notasfiscais)?>
     <div class="table-responsive">
         <table class="table table-striped display" style="width:100%">        
             <thead class="thead-dark">
                 <tr>
-                    <th>NotaFiscal</th>                    
+                    <th>Nº NF</th>                    
                     <th>Cliente</th>
+                    <th>Veiculo</th>
                     <th>Vendedor</th>
                     <th>Pagamento</th>
                     <th>Emissão</th>
@@ -27,9 +28,16 @@
                     foreach ($notasfiscais as $nf) {
                         echo '<tr>';
                         echo '<td>' . $nf->id . '</td>';
-                        echo '<td>' . $nf->cliente_id . '</td>';
-                        echo '<td>' . $nf->funcionario_id . '</td>';
-                        echo '<td>' . $nf->formaPagamento_id . '</td>';
+                        echo '<td>' . $nf->nomeCliente . '</td>';
+                        echo '<td>' . $nf->nomeVeiculo . '</td>';
+                        echo '<td>' . $nf->nomeFuncionario. '</td>';
+                        echo '<td>';
+                        if (($nf->formaPagamento_id) == 1) {
+                            echo 'Á Vista';
+                        } elseif (($nf->formaPagamento_id) == 2) {
+                            echo 'Á Prazo';
+                        }       
+                        echo '</td>';
                         echo '<td>' . $nf->dataEmissao . '</td>';
                         echo '<td>' . $nf->icms . '</td>';
                         echo '<td>' . $nf->valorNota . '</td>';
