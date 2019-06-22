@@ -14,7 +14,7 @@
                     <th>Veiculo</th>                    
                     <th>Ano</th>
                     <th>Cor</th>
-                    <th>Renavam</th>
+                    <th>Placa</th>
                     <th>Preço</th>
                     <th>Acessórios</th>
                     <th>Ações</th>
@@ -28,8 +28,8 @@
                         echo '<td>' . $v->nomeVeiculo . '</td>';
                         echo '<td>' . $v->ano . '</td>';
                         echo '<td>' . $v->cor . '</td>';
-                        echo '<td>' . $v->renavam . '</td>';
-                        echo '<td>' . $v->valorVeiculo . '</td>';
+                        echo '<td>' . $v->placa . '</td>';
+                        echo '<td> R$ ' . $v->valorVeiculo . '</td>';
                         echo '<td><a href="' . base_url('VeiculoAcessorio/listar/') . $v->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i>Acessórios do Veiculo</a></td>';
                         echo '<td>'
                         . '<a href="' . base_url('Veiculo/alterar/') . $v->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';

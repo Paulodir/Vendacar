@@ -5,20 +5,24 @@
             <li class="breadcrumb-item active" aria-current="page">Lista de Notas Fiscais</li>
         </ol>
     </nav> 
+    <?PHP
+    date_default_timezone_set('America/Sao_Paulo'); # add your city to set local time zone
+    ECHO date('Y-m-d H:i:s')
+    ?>
     <?= ($this->session->flashdata('retorno')) ? $this->session->flashdata('retorno') : ''; ?>
-    <?= validation_errors(); // var_dump($notasfiscais)?>
+<?= validation_errors(); // var_dump($notasfiscais)   ?>
     <div class="table-responsive">
         <table class="table table-striped display" style="width:100%">        
             <thead class="thead-dark">
                 <tr>
-                    <th>Nº NF</th>                    
+                    <th>NºNF</th>                    
                     <th>Cliente</th>
                     <th>Veiculo</th>
                     <th>Vendedor</th>
-                    <th>Pagamento</th>
                     <th>Emissão</th>
                     <th>ICMS</th>
                     <th>Valor da Nota</th>
+                    <th>Situação</th>
                     <th>Ações</th>
                 </tr>
             </thead>        
@@ -30,22 +34,19 @@
                         echo '<td>' . $nf->id . '</td>';
                         echo '<td>' . $nf->nomeCliente . '</td>';
                         echo '<td>' . $nf->nomeVeiculo . '</td>';
-                        echo '<td>' . $nf->nomeFuncionario. '</td>';
-                        echo '<td>';
-                        if (($nf->formaPagamento_id) == 1) {
-                            echo 'Á Vista';
-                        } elseif (($nf->formaPagamento_id) == 2) {
-                            echo 'Á Prazo';
-                        }       
-                        echo '</td>';
+                        echo '<td>' . $nf->nomeFuncionario . '</td>';
                         echo '<td>' . $nf->dataEmissao . '</td>';
-                        echo '<td>' . $nf->icms . '</td>';
-                        echo '<td>' . $nf->valorNota . '</td>';
-                        echo '<td>'
-                        . '<a href="' . base_url('NotaFiscal/alterar/') . $nf->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';
-
-                            echo '<a href="' . base_url('NotaFiscal/indisponivel/') . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
-               
+                        echo '<td> R$ ' . $nf->icms . '</td>';
+                        echo '<td> R$ ' . $nf->valorFinal . '</td>';
+                        echo '<td>';
+                        if (($nf->status) == 1) {
+                            echo 'Autorizada';
+                        } elseif (($nf->status) == 0) {
+                            echo 'Cancelada';
+                        }
+                        echo '</td>';
+                        echo '<td>';                  
+                        echo '<a href="' . base_url('NotaFiscal/cancelar/') . $nf->id . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
                         echo '</td>';
                         echo '</tr>';
                     }

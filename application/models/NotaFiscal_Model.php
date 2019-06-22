@@ -49,10 +49,10 @@ class NotaFiscal_Model extends CI_Model {
         }
     }
 
-    public function delete($id) {
+    public function cancel($id) {
         if ($id > 0) {
-            $this->db->where('id', $id);
-            $this->db->delete(self::table);
+            $this->db->where('id', $id);            
+            $this->db->update(self::table, array('status' => 0));
             return $this->db->affected_rows();
         } else {
             return false;

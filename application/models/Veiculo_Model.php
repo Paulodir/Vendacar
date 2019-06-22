@@ -70,7 +70,7 @@ class Veiculo_Model extends CI_Model {
         }
     }
 
-    public function getAcessoriosByVeiculo($veiculo_id=null) {
+    public function getAcessoriosByVeiculo($veiculo_id = null) {
         $this->db->select('veiculoacessorio.*,');
         $this->db->select('acessorio.descricaoAcessorio, acessorio.tipoAcessorio, acessorio.valorAcessorio');
         $this->db->from(self::table);
@@ -81,18 +81,30 @@ class Veiculo_Model extends CI_Model {
         //echo $this->db->last_query();exit;
         return $query->result();
     }
+
     public function deleteAcessorios($id) {
         if ($id > 0) {
             $this->db->where('id', $id);
             $this->db->delete('veiculoacessorio');
-           //echo $this->db->last_query();exit;
+            //echo $this->db->last_query();exit;
             return $this->db->affected_rows();
         } else {
             return false;
         }
     }
+
     public function insertAcessorios($data = array()) {
         $this->db->insert('veiculoacessorio', $data);
         return $this->db->affected_rows();
     }
+
+    public function getValorVeiculo($veiculo_id = null) {
+        $this->db->select('veiculo.valorVeiculo');
+        $this->db->from(self::table);
+        $this->db->where('id', $veiculo_id);
+        $query = $this->db->get();
+        //echo $this->db->last_query();exit;
+        return $query->result();
+    }
+
 }

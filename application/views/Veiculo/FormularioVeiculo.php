@@ -1,22 +1,3 @@
-<script src="<?= base_url('Incluir/AjaxJquery.js') ?>" type="text/javascript"></script>
-<script src="<?= base_url('Incluir/Jquery.Mask.js') ?>" type="text/javascript"></script>
-<script type="text/javascript">
-    $("#Renavam").mask("00000000000");
-    $(document).ready(function () {
-        var base_url = "<?= base_url() ?>"
-        $('#Montadora').change(function () {
-            $('#Modelo').attr('disabled', 'disabled');
-            $('#Modelo').html('<option>Carregando...</option>');
-            var montadora_id = $('#Montadora').val();
-            $.post(base_url + 'Veiculo/getModelosAjax', {
-                montadora_id: montadora_id
-            }, function (data) {
-                $('#Modelo').html(data);
-                $('#Modelo').removeAttr('disabled');
-            });
-        });
-    });
-</script>
 <div class="container mt-3">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -73,9 +54,17 @@
                     <input type="text" class="form-control" name="Cor" id="Cor" value="<?= (isset($veiculo)) === true ? $veiculo->cor : set_value('Cor') ?>">
                 </div>
                 <div class="form-group">
+                    <label for="Placa">Placa</label> 
+                    <input type="text" class="form-control" name="Placa" id="Placa" value="<?= (isset($veiculo)) === true ? $veiculo->placa : set_value('Placa') ?>">
+                </div>
+                <div class="form-group">
                     <label for="Renavam">Renavam</label> 
                     <input type="text" class="form-control" name="Renavam" id="Renavam" value="<?= (isset($veiculo)) === true ? $veiculo->renavam : set_value('Renavam') ?>">
                 </div>
+                <!--                <div class="form-group">
+                                    <label for="Serie">Numero de Série</label> 
+                                    <input type="text" class="form-control" name="Serie" id="Serie" value="<? (isset($veiculo)) === true ? $veiculo->renavam : set_value('Serie') ?>">
+                                </div>-->
                 <label for="Valor">Valor</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -95,7 +84,6 @@
                   }, 4000);
                  */
                 ?>
-
                 <div class="text-center mb-5">
                     <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($veiculo)) === true ? ' Alterar' : ' Salvar' ?></button>
                     <a class="btn btn-warning" href="<?= base_url('Modelo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
@@ -104,5 +92,24 @@
         </div>
     </div>
 </div>
-
+<script src="<?= base_url('Incluir/AjaxJquery.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('Incluir/Jquery.Mask.js') ?>" type="text/javascript"></script>
+<script type="text/javascript">
+    $("#Renavam").mask("00000000000");
+    $("#Placa").mask("AAA-0000");
+    $(document).ready(function () {
+        var base_url = "<?= base_url() ?>"
+        $('#Montadora').change(function () {
+            $('#Modelo').attr('disabled', 'disabled');
+            $('#Modelo').html('<option>Carregando...</option>');
+            var montadora_id = $('#Montadora').val();
+            $.post(base_url + 'Veiculo/getModelosAjax', {
+                montadora_id: montadora_id
+            }, function (data) {
+                $('#Modelo').html(data);
+                $('#Modelo').removeAttr('disabled');
+            });
+        });
+    });
+</script>
 

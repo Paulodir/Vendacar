@@ -121,87 +121,10 @@ class Veiculo extends CI_Controller {
         redirect('Veiculo/listar');
     }
 
-//    public function listarAcessorios($id) {
-//        $data['veiculo'] = $this->Veiculo_Model->getOne($id);
-//        // $data['veiculoacessorios'] = $this->VeiculoAcessorios_Model->getAcessoriosByVeiculo($veiculo_id);
-//        $this->load->view('Fixo/Header');
-//        $this->load->view('Veiculo/Acessorios');
-//        $this->load->view('Fixo/Footer');
-//    }
-
-    public function listarAcessorios($id) {
-        $data['veiculo'] = $this->Veiculo_Model->getOne($id);
-        $data['veiculoacessorios'] = $this->Veiculo_Model->getAcessoriosByVeiculo($id);
-        $this->load->view('Fixo/Header');
-        $this->load->view('Veiculo/Acessorios', $data);
-        $this->load->view('Fixo/Footer');
+    public function getValorAjax() {
+        $veiculo_id = $this->input->post('veiculo_id');
+        $valorVeiculo = $this->Veiculo_Model->getValorVeiculo($veiculo_id);
+        foreach ($valorVeiculo as $valor)
+        echo $valor->valorVeiculo;
     }
-
-    public function incluirAcessorios($id) {
-        $this->form_validation->set_rules('Veiculo', 'Veiculo', 'required');
-        $this->form_validation->set_rules('Acessorio', 'Acessorio', 'required');
-        if ($this->form_validation->run() == false) {
-            $data['veiculos'] = $this->Veiculo_Model->getAll();
-            $data['veiculo'] = $this->Veiculo_Model->getOne($id);
-            $this->load->model('Acessorio_Model');
-            $data['acessorios'] = $this->Acessorio_Model->getAll();
-            $this->load->view('Fixo/Header');
-            $this->load->view('Veiculo/AdicionaAcessorios', $data);
-            $this->load->view('Fixo/Footer');
-        } else {
-            $data = array(
-                'acessorio_id' => $this->input->post('Acessorio'),
-                'veiculo_id' => $this->input->post('Veiculo')
-            );
-            if ($this->Veiculo_Model->insertAcessorios($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com sucesso</div>');
-                redirect('Veiculo/listarAcessorios/' . $id);
-            } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Adicionar Acessório!!!</div>');
-                redirect('Veiculo/incluirAcessorios' . $id);
-            }
-        }
-    }
-
-    public function AlterarAcessorios($id, $veiculo_id) {
-        if ($id > 0) {
-            $this->form_validation->set_rules('Veiculo', 'Veiculo', 'required');
-            $this->form_validation->set_rules('Acessorio', 'Acessorio', 'required');
-            if ($this->form_validation->run() == false) {
-                $data['veiculos'] = $this->Veiculo_Model->getAll();
-                $this->load->model('Acessorio_Model');
-                $data['acessorios'] = $this->Acessorio_Model->getAll();
-                $this->load->view('Fixo/Header');
-                $this->load->view('Veiculo/AdicionaAcessorios', $data);
-                $this->load->view('Fixo/Footer');
-            } else {
-                $data = array(
-                    'acessorio_id' => $this->input->post('Acessorio'),
-                    'veiculo_id' => $this->input->post('Veiculo')
-                );
-                if ($this->Veiculo_Model->updateAcessorios($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com sucesso</div>');
-                    redirect('Veiculo/listarAcessorios/' . $veiculo_id);
-                } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Adicionar Acessório!!!</div>');
-                    redirect('Veiculo/incluirAcessorios' . $veiculo_id);
-                }
-            }
-        } else {
-            redirect('Veiculo/listarAcessorios/' . $veiculo_id);
-        }
-    }
-
-    public function deletarAcessorios($id, $veiculo_id) {
-        if (($id > 0)) {
-
-            if ($this->Veiculo_Model->deleteAcessorios($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório deletado do Veículo com sucesso!</div>');
-            } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Acessório do Veículo...</div>');
-            }
-        }
-        redirect('Veiculo/listarAcessorios/' . $veiculo_id);
-    }
-
 }
