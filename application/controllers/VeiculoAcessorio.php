@@ -7,8 +7,8 @@ class VeiculoAcessorio extends CI_Controller {
     public function __construct() {
         parent::__construct();
         //chama o método que faz a validação de login de usuário
-        //$this->load->model('Usuario_model');
-        //$this->Usuario_model->verificaLogin();
+        $this->load->model('Usuario_Model');
+        $this->Usuario_Model->verificaLogin();
         $this->load->model('VeiculoAcessorio_Model');
     }
 
@@ -67,10 +67,7 @@ class VeiculoAcessorio extends CI_Controller {
                 $this->load->view('Veiculo/AdicionaAcessorios', $data);
                 $this->load->view('Fixo/Footer');
             } else {
-                $data = array(
-                    'acessorio_id' => $this->input->post('Acessorio'),
-                    'veiculo_id' => $this->input->post('Veiculo')
-                );
+                $data = array('acessorio_id' => $this->input->post('Acessorio'), 'veiculo_id' => $this->input->post('Veiculo'));
                 if ($this->VeiculoAcessorio_Model->update($id, $data)) {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com sucesso</div>');
                     redirect('VeiculoAcessorio/listar/' . $veiculo_id);

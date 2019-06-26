@@ -10,8 +10,8 @@ class FormaPagamento extends CI_Controller {
         //chama o contrutor da classe pai CI_Controller
         parent::__construct();
         //chama o método que faz a validação de login de usuário
-        //$this->load->model('Usuario_model');
-        //$this->Usuario_model->verificaLogin();
+        $this->load->model('Usuario_Model');
+        $this->Usuario_Model->verificaLogin();
         $this->load->model('FormaPagamento_Model');
     }
 
@@ -28,7 +28,6 @@ class FormaPagamento extends CI_Controller {
 
     public function cadastrar() {
             $this->form_validation->set_rules('Pagamento', 'Pagamento', 'required');
-             $this->form_validation->set_rules('555', 'Forma de Pagamento', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('Fixo/Header');
             $this->load->view('FormaPagamento/Formulario');

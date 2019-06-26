@@ -5,10 +5,6 @@
             <li class="breadcrumb-item active" aria-current="page">Lista de Notas Fiscais</li>
         </ol>
     </nav> 
-    <?PHP
-    date_default_timezone_set('America/Sao_Paulo'); # add your city to set local time zone
-    ECHO date('Y-m-d H:i:s')
-    ?>
     <?= ($this->session->flashdata('retorno')) ? $this->session->flashdata('retorno') : ''; ?>
 <?= validation_errors(); // var_dump($notasfiscais)   ?>
     <div class="table-responsive">
@@ -46,7 +42,7 @@
                         }
                         echo '</td>';
                         echo '<td>';                  
-                        echo '<a href="' . base_url('NotaFiscal/cancelar/') . $nf->id . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
+                        echo '<a href="' . base_url('NotaFiscal/cancelar/') . $nf->id . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Cancelar</a>';
                         echo '</td>';
                         echo '</tr>';
                     }

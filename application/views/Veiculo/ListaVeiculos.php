@@ -16,7 +16,7 @@
                     <th>Cor</th>
                     <th>Placa</th>
                     <th>Preço</th>
-                    <th>Acessórios</th>
+                    <th>Adicionar</th>
                     <th>Ações</th>
                 </tr>
             </thead>        
@@ -30,11 +30,14 @@
                         echo '<td>' . $v->cor . '</td>';
                         echo '<td>' . $v->placa . '</td>';
                         echo '<td> R$ ' . $v->valorVeiculo . '</td>';
-                        echo '<td><a href="' . base_url('VeiculoAcessorio/listar/') . $v->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i>Acessórios do Veiculo</a></td>';
+                        echo '<td>';
+                        echo '<a href="' . base_url('VeiculoAcessorio/listar/') . $v->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i>Acessórios</a>';
+                        echo '<a href="' . base_url('Imagem/Cadastrar/') . $v->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i>Fotos</a>';
+                        echo'</td>';
                         echo '<td>'
                         . '<a href="' . base_url('Veiculo/alterar/') . $v->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';
                         if ($v->veiculoEmUso < 1) {
-                            echo '<a href="' . base_url('Veiculo/deletar/') . $v->id . '" class="btn btn-sm btn-outline-secondary" ><i class="fas fa-trash-alt"></i> Deletar</a>';
+                            echo '<a href="' . base_url('Veiculo/deletar/') . $v->id . '" class="btn btn-sm btn-outline-secondary" data-confirm=""><i class="fas fa-trash-alt"></i> Deletar</a>';
                         } else {
                             echo '<a href="' . base_url('Veiculo/indisponivel/') . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
                         }

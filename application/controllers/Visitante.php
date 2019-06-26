@@ -16,6 +16,7 @@ class Visitante extends CI_Controller {
     }
 
     public function home() {
+        $data['foto'] = $this->Visitante_Model->getPrimeiraFoto();
         $data['veiculos'] = $this->Visitante_Model->getLastVeiculos();
         $data['acessorios'] = $this->Visitante_Model->getAcessorios();
         $this->load->view('Visitante/Header');
@@ -24,15 +25,28 @@ class Visitante extends CI_Controller {
     }
 
     public function veiculos() {
+        $data['foto'] = $this->Visitante_Model->getPrimeiraFoto();
         $data['veiculos'] = $this->Visitante_Model->getAllVeiculos();
         $data['acessorios'] = $this->Visitante_Model->getAcessorios();
         $this->load->view('Visitante/Header');
         $this->load->view('Visitante/Home', $data);
         $this->load->view('Visitante/Footer');
     }
-        public function contato() {
+
+    public function contato() {
         $this->load->view('Visitante/Header');
         $this->load->view('Visitante/Contato');
+        $this->load->view('Visitante/Footer');
+    }
+
+    public function veiculo($id) {
+        $this->load->model('Veiculo_Model');
+        $data['veiculo'] = $this->Veiculo_Model->getOne($id);
+        $data['veiculoacessorios'] = $this->Visitante_Model->getAcessorios();
+        $this->load->model('Imagem_Model');
+        $data['fotos'] = $this->Imagem_Model->getFotoByVeiculo($id);
+        $this->load->view('Visitante/Header');
+        $this->load->view('Visitante/Veiculo', $data);
         $this->load->view('Visitante/Footer');
     }
 

@@ -24,7 +24,7 @@
                          echo '<td>';
                         echo '<a href="' . base_url('FormaPagamento/alterar/') . $f->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';
                        if ($f->formaPagamentoEmUso < 1) {
-                            echo '<a href="' . $this->config->base_url() . 'FormaPagamento/deletar/' . $f->id . '" class="btn btn-sm btn-outline-secondary" ><i class="fas fa-trash-alt"></i> Deletar</a>';
+                            echo '<a href="' . $this->config->base_url() . 'FormaPagamento/deletar/' . $f->id . '" class="btn btn-sm btn-outline-secondary" data-confirm=""><i class="fas fa-trash-alt"></i> Deletar</a>';
                         } else {
                             echo '<a href="' . base_url('FormaPagamento/indisponivel/') . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
                         }

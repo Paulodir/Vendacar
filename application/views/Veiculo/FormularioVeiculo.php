@@ -72,18 +72,32 @@
                     </div>
                     <input type="text" id="Valor" name="Valor" class="form-control" value="<?= (isset($veiculo)) === true ? $veiculo->valorVeiculo : set_value('Valor') ?>">
                 </div>
-                <?php
-                /* var_dump($modelos);var_dump($montadoras);
-                 * echo '<option ' . (($marca->id == $veiculo->marca_id) ? 'selected' : null) . ' value="' . $marca->id . '">' . $marca->nome . '</option>';
-                  if (strlen($_POST['cpf']) < 30) {
-                  echo '<span style="color: red"><i class="fas fa-exclamation-circle"></i>A descrição deve conter pelo menos 30 caracteres, Total é ' . strlen($_POST['cpf']) . '.</span>';
-                  window.setTimeout(function() {
-                  $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                  $(this).remove();
-                  });
-                  }, 4000);
-                 */
-                ?>
+<!--                <label for="fotos"> Fotos: </label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input id="files" type="file[]" multiple name="userfile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Selecione um arquivo</label>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <img class="col-md-4" src="<? (isset($veiculo) ? base_url('/Uploads/' . $veiculo->id . '/') : '') ?>" id="imagem" name="imagem" width="210" style="max-height:150px">
+                </div>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile04">
+                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Button</button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <img class="col-md-4" src="<? (isset($veiculo) ? base_url('/Uploads/' . $veiculo->id . '/') : '') ?>" id="imagem" name="imagem" width="210" style="max-height:150px">
+                </div>-->
+                <br>
                 <div class="text-center mb-5">
                     <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($veiculo)) === true ? ' Alterar' : ' Salvar' ?></button>
                     <a class="btn btn-warning" href="<?= base_url('Modelo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
@@ -97,6 +111,17 @@
 <script type="text/javascript">
     $("#Renavam").mask("00000000000");
     $("#Placa").mask("AAA-0000");
+//    document.getElementById("files").onchange = function () {
+//        var reader = new FileReader();
+//
+//        reader.onload = function (e) {
+//            // get loaded data and render thumbnail.
+//            document.getElementById("imagem").src = e.target.result;
+//        };
+//
+//        // read the image file as a data URL.
+//        reader.readAsDataURL(this.files[0]);
+//    };
     $(document).ready(function () {
         var base_url = "<?= base_url() ?>"
         $('#Montadora').change(function () {

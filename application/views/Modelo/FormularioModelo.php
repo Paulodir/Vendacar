@@ -1,9 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-<script type="text/javascript">
-    $("#RG").mask("000000000000000");
-    $("#CPF").mask("000.000.000-00");
-</script>
 <div class="container mt-3">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -19,7 +13,7 @@
                 <input type="hidden" name="id" value="">
                 <div class="form-group">
                     <label for="Modelo">Modelo</label>
-                    <input class="form-control" type="text" name="Modelo" id="Modelo" value="<?= (isset($modelo)) ? $modelo->nomeModelo : ''; ?>" placeholder="Digite o Modelo">
+                    <input class="form-control" type="text" name="Modelo" id="Modelo" value="<?= (isset($modelo)) ? $modelo->nomeModelo : set_value('Modelo'); ?>" placeholder="Digite o Modelo">
                 </div>                
                 <div class="form-group">
                     <label for="Montadora">Montadora</label>

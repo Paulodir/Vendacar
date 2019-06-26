@@ -10,8 +10,8 @@ class Cliente extends CI_Controller {
         //chama o contrutor da classe pai CI_Controller
         parent::__construct();
         //chama o método que faz a validação de login de usuário
-        //$this->load->model('Usuario_model');
-        //$this->Usuario_model->verificaLogin();
+        $this->load->model('Usuario_Model');
+        $this->Usuario_Model->verificaLogin();
         $this->load->model('Cliente_Model');
     }
 

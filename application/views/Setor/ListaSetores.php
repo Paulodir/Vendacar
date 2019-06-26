@@ -24,7 +24,7 @@
                         echo '<td>'
                         . '<a href="' . base_url('Setor/alterar/') . $s->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';
                         if ($s->setorEmUso < 1) {
-                            echo '<a href="' . base_url('Setor/deletar/') . $s->id . '" class="btn btn-sm btn-outline-secondary" ><i class="fas fa-trash-alt"></i> Deletar</a>';
+                            echo '<a href="' . base_url('Setor/deletar/') . $s->id . '" class="btn btn-sm btn-outline-secondary" data-confirm=""><i class="fas fa-trash-alt"></i> Deletar</a>';
                         } else {
                             echo '<a href="' . base_url('Setor/indisponivel/') . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
                         }

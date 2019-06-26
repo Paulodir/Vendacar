@@ -29,7 +29,6 @@ class Montadora_Model extends CI_Model {
         if ($id > 0) {
             $this->db->where('id', $id);
             $this->db->delete(self::table);
-
             return $this->db->affected_rows();
         } else {
             return false;

@@ -7,8 +7,8 @@ class Veiculo extends CI_Controller {
     public function __construct() {
         parent::__construct();
         //chama o método que faz a validação de login de usuário
-        //$this->load->model('Usuario_model');
-        //$this->Usuario_model->verificaLogin();
+        $this->load->model('Usuario_Model');
+        $this->Usuario_Model->verificaLogin();
         $this->load->model('Veiculo_Model');
     }
 
@@ -28,6 +28,7 @@ class Veiculo extends CI_Controller {
         $this->form_validation->set_rules('Montadora', 'Montadora', 'required');
         $this->form_validation->set_rules('Ano', 'Ano', 'required');
         $this->form_validation->set_rules('Cor', 'Cor', 'required');
+        $this->form_validation->set_rules('Placa', 'Placa', 'required');
         $this->form_validation->set_rules('Renavam', 'Renavam', 'required');
         $this->form_validation->set_rules('Valor', 'Valor', 'required');
         if ($this->form_validation->run() == false) {
@@ -41,6 +42,7 @@ class Veiculo extends CI_Controller {
                 'modelo_id' => $this->input->post('Modelo'),
                 'Ano' => $this->input->post('Ano'),
                 'cor' => $this->input->post('Cor'),
+                'placa' => $this->input->post('Placa'),
                 'renavam' => $this->input->post('Renavam'),
                 'valorVeiculo' => $this->input->post('Valor')
             );
@@ -75,6 +77,7 @@ class Veiculo extends CI_Controller {
             $this->form_validation->set_rules('Montadora', 'Montadora', 'required');
             $this->form_validation->set_rules('Ano', 'Ano', 'required');
             $this->form_validation->set_rules('Cor', 'Cor', 'required');
+            $this->form_validation->set_rules('Placa', 'Placa', 'required');
             $this->form_validation->set_rules('Renavam', 'Renavam', 'required');
             $this->form_validation->set_rules('Valor', 'Valor', 'required');
             if ($this->form_validation->run() == false) {
@@ -89,6 +92,7 @@ class Veiculo extends CI_Controller {
                     'modelo_id' => $this->input->post('Modelo'),
                     'Ano' => $this->input->post('Ano'),
                     'cor' => $this->input->post('Cor'),
+                    'placa' => $this->input->post('Placa'),
                     'renavam' => $this->input->post('Renavam'),
                     'valorVeiculo' => $this->input->post('Valor')
                 );

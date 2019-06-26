@@ -37,7 +37,7 @@
             <div class="row d-none d-md-block">
                 <img class="col-md-12 expand-md" height="175px" src="<?= base_url('Incluir/Header.jpg') ?>">
             </div>
-            <nav class="navbar navbar-expand-md navbar-light" style="background-color:#D3D3D3">
+            <nav class="navbar navbar-expand-md navbar-light" style="background-color:#d3d3d3">
                 <a class="navbar-brand" href="<?= base_url(); ?>">
                     <img src="<?= base_url('Incluir/logo.png') ?>" width="110" height="55" class="d-inline-block align-top" alt="" style="margin:0">
                     VENDACAR
@@ -57,6 +57,12 @@
                             <a class="nav-link" href="<?= base_url('Visitante/Contato') ?>">Fale Conosco</a>
                         </li>
                     </ul>
+
                 </div>
+                <?php if ($this->session->userdata('logado')): ?>
+                    <form class="form-inline mt-2 mt-md-0">
+                        <a href="<?= base_url('Veiculo/Listar') ?>" class="btn btn-outline-success my-2 my-sm-0" >Área Administrativa</a>
+                    </form>
+                <?php endif ?> 
             </nav>
         </header>

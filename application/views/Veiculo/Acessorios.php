@@ -35,7 +35,7 @@
                         echo '<td> R$ ' . $v->valorAcessorio . '</td>';
                         echo '<td>';
                         echo '<a href="' . base_url('VeiculoAcessorio/alterarAcessorios/') . $v->id . '/' . $v->veiculo_id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';
-                        echo '<a href="' . base_url('VeiculoAcessorio/deletarAcessorios/') . $v->id . '/' . $v->veiculo_id . '" class="btn btn-sm btn-outline-secondary" ><i class="fas fa-trash-alt"></i> Deletar</a>';
+                        echo '<a href="' . base_url('VeiculoAcessorio/deletarAcessorios/') . $v->id . '/' . $v->veiculo_id . '" class="btn btn-sm btn-outline-secondary" data-confirm=""><i class="fas fa-trash-alt"></i> Deletar</a>';
                         echo '</td>';
                         echo '</tr>';
                     }

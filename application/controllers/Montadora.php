@@ -11,8 +11,8 @@ class Montadora extends CI_Controller {
         parent::__construct();
 
         //chama o método que faz a validação de login de usuário
-        //$this->load->model('Usuario_model');
-        //$this->Usuario_model->verificaLogin();
+        $this->load->model('Usuario_Model');
+        $this->Usuario_Model->verificaLogin();
         $this->load->model('Montadora_Model');
     }
 

@@ -50,7 +50,7 @@
                         echo '<td>';
                         echo '<a href="' .base_url('Cliente/alterar/' ) .  $c->id . '" class="btn btn-sm btn-outline-secondary mr-2" ><i class="fas fa-pencil-alt"></i> Alterar</a>';
                         if ($c->clienteEmUso < 1) {
-                            echo '<a href="' . base_url('Cliente/deletar/') . $c->id . '" class="btn btn-sm btn-outline-secondary" ><i class="fas fa-trash-alt"></i> Deletar</a>';
+                            echo '<a href="' . base_url('Cliente/deletar/') . $c->id . '" class="btn btn-sm btn-outline-secondary" data-confirm=""><i class="fas fa-trash-alt"></i> Deletar</a>';
                         } else {
                             echo '<a href="' . base_url('Cliente/indisponivel/') . '" class="btn btn-sm btn-dark" ><i class="fas fa-trash-alt"></i> Deletar</a>';
                         }
