@@ -27,14 +27,14 @@ class NotaFiscal extends CI_Controller {
     }
 
     public function cadastrar() {
-        $this->form_validation->set_rules('Veiculo', 'Veiculo', 'required');
+        $this->form_validation->set_rules('Veiculo', 'Veículo', 'required');
         $this->form_validation->set_rules('Cliente', 'Cliente', 'required');
         $this->form_validation->set_rules('Vendedor', 'Vendedor', 'required');
-        $this->form_validation->set_rules('Pagamento', 'Pagamento', 'required');
-        $this->form_validation->set_rules('emissao', 'emissao', 'required');
-        $this->form_validation->set_rules('AcrescimoDesconto', 'AcrescimoDesconto', 'required');
-        $this->form_validation->set_rules('ValorVeiculo', 'ValorVeiculo', 'required');
-        $this->form_validation->set_rules('ValorFinal', 'ValorFinal', 'required');
+        $this->form_validation->set_rules('Pagamento', 'Forma de Pagamento', 'required');
+        $this->form_validation->set_rules('emissao', 'Data e Hora da Emissão', 'required');
+        $this->form_validation->set_rules('AcrescimoDesconto', 'Acréscimo ou Desconto', 'required');
+        $this->form_validation->set_rules('ValorVeiculo', 'Valor do Veículo', 'required');
+        $this->form_validation->set_rules('ValorFinal', 'Valor da Final da Nota', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->model('Veiculo_Model');
             $data['veiculos'] = $this->Veiculo_Model->getAll();
@@ -62,10 +62,10 @@ class NotaFiscal extends CI_Controller {
                 'status'=>$this->input->post('')+1
             );
             if ($this->NotaFiscal_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> NotaFiscal cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Nota Fiscal cadastrado com Sucesso!</div>');
                 redirect('NotaFiscal/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar NotaFiscal!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Nota Fiscal!!!</div>');
                 redirect('NotaFiscal/cadastrar');
             }
         }

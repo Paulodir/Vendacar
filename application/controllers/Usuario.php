@@ -16,6 +16,7 @@ class Usuario extends CI_Controller {
     }
 
     public function listar() {
+        $this->Usuario_Model->verificaLogin();
         $data['usuarios'] = $this->Usuario_Model->getAll();
         $this->load->view('Fixo/Header');
         $this->load->view('Usuario/Lista', $data);
@@ -23,8 +24,9 @@ class Usuario extends CI_Controller {
     }
 
     public function cadastrar() {
-        $this->form_validation->set_rules('email', 'email', 'required|valid_email');
-        $this->form_validation->set_rules('senha', 'senha', 'required');
+        $this->Usuario_Model->verificaLogin();
+        $this->form_validation->set_rules('email', 'E-Mail', 'required|valid_email');
+        $this->form_validation->set_rules('senha', 'Senha', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('Usuario/Header');
             $this->load->view('Usuario/Login');
@@ -35,19 +37,20 @@ class Usuario extends CI_Controller {
                 'senha' => sha1($this->input->post('senha') . 'paulodirSENAC')
             );
             if ($this->Usuario_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário Cadastrado com Sucesso!</div>');
                 redirect('Usuario/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar Usuário!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Usuário!!!</div>');
                 redirect('Usuario/cadastrar');
             }
         }
     }
 
     public function alterar($id) {
+        $this->Usuario_Model->verificaLogin();
         if ($id > 0) {
-            $this->form_validation->set_rules('email', 'email', 'required|valid_email');
-            $this->form_validation->set_rules('senha', 'senha', 'required');
+            $this->form_validation->set_rules('email', 'E-Mail', 'required|valid_email');
+            $this->form_validation->set_rules('senha', 'Senha', 'required');
             if ($this->form_validation->run() == false) {
                 $data['usuario'] = $this->Usuario_Model->getOne($id);
                 $this->load->view('Usuario/Header');
@@ -59,22 +62,24 @@ class Usuario extends CI_Controller {
                     'senha' => sha1($this->input->post('senha') . 'paulodirSENAC')
                 );
                 if ($this->Usuario_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário Alterado com sucesso</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Dados do Usuário Alterado com Sucesso!</div>');
                     redirect('Usuario/listar');
                 } else {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Alterar Usuário!!!</div>');
-                    redirect('Usuario/cadastrar');
+                    redirect('Usuario/alterar/' . $id);
                 }
             }
         } else {
+            $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Usuário Inválido!!!</div>');
             redirect('Usuario/listar');
         }
     }
 
     public function deletar($id) {
+        $this->Usuario_Model->verificaLogin();
         if ($id > 0) {
             if ($this->Usuario_Model->delete($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário deletado com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário Deletado com Sucesso!</div>');
             } else {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Usuário...</div>');
             }
@@ -101,10 +106,10 @@ class Usuario extends CI_Controller {
                     'senha' => sha1($this->input->post('nova') . 'paulodirSENAC')
                 );
                 if ($this->Usuario_Model->updatePass($email, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Senha alterada com Sucesso!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Senha Alterada com Sucesso!</div>');
                     redirect('Usuario/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar Senha...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Senha...</div>');
                     redirect('Usuario/Redefinir');
                 }
             } else {
@@ -134,10 +139,10 @@ class Usuario extends CI_Controller {
                     'logado' => TRUE
                 );
                 $this->session->set_userdata($data);
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuario ' . $email . ' logado.</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário ' . $email . ' Logado.</div>');
                 redirect($this->config->base_url('Veiculo/listar'));
             } else {
-                $this->session->set_flashdata('retorno', '<div class=" alert alert-danger"><i class="far fa-hand-paper"></i> Usuario ou senha incoretos...</div>');
+                $this->session->set_flashdata('retorno', '<div class=" alert alert-danger"><i class="far fa-hand-paper"></i> Usuário ou Senha Incoretos...</div>');
             }redirect(base_url('Usuario/logar'));
         }
     }

@@ -3,7 +3,7 @@
         height: 75px;
         border: 1px solid #000;
         margin: 10px 5px 0 0;
-    }
+    } 
 </style>
 <div class="container mt-3">
     <nav aria-label="breadcrumb">

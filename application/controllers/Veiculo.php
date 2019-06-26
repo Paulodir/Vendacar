@@ -47,10 +47,10 @@ class Veiculo extends CI_Controller {
                 'valorVeiculo' => $this->input->post('Valor')
             );
             if ($this->Veiculo_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veiculo cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veículo Cadastrado com Sucesso!</div>');
                 redirect('Veiculo/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar Veiculo!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Veículo!!!</div>');
                 redirect('Veiculo/cadastrar');
             }
         }
@@ -97,10 +97,10 @@ class Veiculo extends CI_Controller {
                     'valorVeiculo' => $this->input->post('Valor')
                 );
                 if ($this->Veiculo_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veiculo alterado com sucesso!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veículo Alterado com Sucesso!</div>');
                     redirect('Veiculo/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar Veiculo...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Veículo...</div>');
                     redirect('Veiculo/alterar/' . $id);
                 }
             }
@@ -112,7 +112,7 @@ class Veiculo extends CI_Controller {
     public function deletar($id) {
         if ($id > 0) {
             if ($this->Veiculo_Model->delete($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veiculo deletado com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veiculo deletado com Sucesso!</div>');
             } else {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Veiculo...</div>');
             }
@@ -121,7 +121,7 @@ class Veiculo extends CI_Controller {
     }
 
     public function indisponivel() {
-        $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel deletar Veículos que estão inseridos em Notas Fiscais cadastradas. Caso desejar deletar este Veículo verifique se há alguma nota fiscal de saida do mesmo</div>');
+        $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel Deletar Veículos que estão inseridos em Notas Fiscais Emitidas. Caso desejar deletar este Veículo verifique se há alguma nota fiscal de saída do mesmo.</div>');
         redirect('Veiculo/listar');
     }
 

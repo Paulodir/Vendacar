@@ -38,10 +38,10 @@ class Setor extends CI_Controller {
                 'nomeSetor' => $this->input->post('Setor')
             );
             if ($this->Setor_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor Cadastrado com Sucesso!</div>');
                 redirect('Setor/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar Setor!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Setor!!!</div>');
                 redirect('Setor/cadastrar');
             }
         }
@@ -60,10 +60,10 @@ class Setor extends CI_Controller {
                     'nomeSetor' => $this->input->post('Setor')
                 );
                 if ($this->Setor_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor alterado com sucesso!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor Alterado com Sucesso!</div>');
                     redirect('Setor/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar Setor...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Setor...</div>');
                     redirect('Setor/alterar/' . $id);
                 }
             }
@@ -75,7 +75,7 @@ class Setor extends CI_Controller {
     public function deletar($id) {
         if ($id > 0) {
             if ($this->Setor_Model->delete($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor deletado com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor Deletado com Sucesso!</div>');
             } else {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Setor...</div>');
             }
@@ -84,7 +84,7 @@ class Setor extends CI_Controller {
     }
 
     public function indisponivel() {
-        $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel deletar Setores com Funcionários...</div>');
+        $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel Deletar Setores com Funcionários...</div>');
         redirect('Setor/listar');
     }
 

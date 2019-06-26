@@ -27,7 +27,7 @@ class FormaPagamento extends CI_Controller {
     }
 
     public function cadastrar() {
-            $this->form_validation->set_rules('Pagamento', 'Pagamento', 'required');
+            $this->form_validation->set_rules('Pagamento', 'Forma de Pagamento', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('Fixo/Header');
             $this->load->view('FormaPagamento/Formulario');
@@ -38,10 +38,10 @@ class FormaPagamento extends CI_Controller {
                 'descricaoPagamento' => $this->input->post('Pagamento')
             );
             if ($this->FormaPagamento_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> FormaPagamento cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Forma de Pagamento Cadastrado com Sucesso!</div>');
                 redirect('FormaPagamento/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar FormaPagamento!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Forma de Pagamento!!!</div>');
                 redirect('FormaPagamento/cadastrar');
             }
         }
@@ -49,7 +49,7 @@ class FormaPagamento extends CI_Controller {
 
     public function alterar($id) {
         if ($id > 0) {
-            $this->form_validation->set_rules('Pagamento', 'Pagamento', 'required');
+            $this->form_validation->set_rules('Pagamento', 'Forma de Pagamento', 'required');
             if ($this->form_validation->run() == false) {
                 $data['formapagamento'] = $this->FormaPagamento_Model->getOne($id);
                 $this->load->view('Fixo/Header');
@@ -60,10 +60,10 @@ class FormaPagamento extends CI_Controller {
                     'descricaoPagamento' => $this->input->post('Pagamento')
                 );
                 if ($this->FormaPagamento_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> FormaPagamento alterado com sucesso!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Descriçao da Forma de Pagamento Alterada com Sucesso!</div>');
                     redirect('FormaPagamento/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar FormaPagamento...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Forma de Pagamento...</div>');
                     redirect('FormaPagamento/alterar/' . $id);
                 }
             }
@@ -75,16 +75,16 @@ class FormaPagamento extends CI_Controller {
     public function deletar($id) {
         if ($id > 0) {
             if ($this->FormaPagamento_Model->delete($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> FormaPagamento deletado com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Forma Pagamento Deletada com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar FormaPagamento...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Forma Pagamento...</div>');
             }
         }
         redirect('FormaPagamento/listar');
     }
 
     public function indisponivel() {
-        $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel deletar FormaPagamentos com notas fiscais emitidas em seu nome ou FormaPagamentos que se tornaram Funcionários...</div>');
+        $this->session->set_flashdata('retorno', '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Não é possivel deletar Formas de Pagamento que foram utilizadas em notas fiscais emitidas...</div>');
         redirect('FormaPagamento/listar');
     }
 

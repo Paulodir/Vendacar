@@ -43,10 +43,10 @@ class Modelo extends CI_Controller {
                 'tipoModelo' => $this->input->post('Categoria')
             );
             if ($this->Modelo_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo Cadastrado com Sucesso!</div>');
                 redirect('Modelo/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar Modelo!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Modelo!!!</div>');
                 redirect('Modelo/cadastrar');
             }
         }
@@ -70,10 +70,10 @@ class Modelo extends CI_Controller {
                     'tipoModelo' => $this->input->post('Categoria')
                 );
                 if ($this->Modelo_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo alterado com sucesso!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo Alterado com Sucesso!</div>');
                     redirect('Modelo/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar Modelo...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Modelo...</div>');
                     redirect('Modelo/alterar/' . $id);
                 }
             }
@@ -85,7 +85,7 @@ class Modelo extends CI_Controller {
     public function deletar($id) {
         if ($id > 0) {
             if ($this->Modelo_Model->delete($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo deletado com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo Deletado com Sucesso!</div>');
             } else {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Modelo...</div>');
             }

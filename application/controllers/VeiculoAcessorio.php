@@ -26,8 +26,8 @@ class VeiculoAcessorio extends CI_Controller {
     }
 
     public function incluirAcessorios($id) {
-        $this->form_validation->set_rules('Veiculo', 'Veiculo', 'required');
-        $this->form_validation->set_rules('Acessorio', 'Acessorio', 'required');
+        $this->form_validation->set_rules('Veiculo', 'Veículo', 'required');
+        $this->form_validation->set_rules('Acessorio', 'Acessório', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->model('Veiculo_Model');
             $data['veiculos'] = $this->Veiculo_Model->getAll();
@@ -43,7 +43,7 @@ class VeiculoAcessorio extends CI_Controller {
                 'veiculo_id' => $this->input->post('Veiculo')
             );
             if ($this->VeiculoAcessorio_Model->insertAcessorios($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com Sucesso!</div>');
                 redirect('VeiculoAcessorio/listar/' . $id);
             } else {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Adicionar Acessório!!!</div>');
@@ -54,8 +54,8 @@ class VeiculoAcessorio extends CI_Controller {
 
     public function AlterarAcessorios($id, $veiculo_id) {
         if ($id > 0) {
-            $this->form_validation->set_rules('Veiculo', 'Veiculo', 'required');
-            $this->form_validation->set_rules('Acessorio', 'Acessorio', 'required');
+            $this->form_validation->set_rules('Veiculo', 'Veículo', 'required');
+            $this->form_validation->set_rules('Acessorio', 'Acessório', 'required');
             if ($this->form_validation->run() == false) {
                 $data['veiculoacessorios'] = $this->VeiculoAcessorio_Model->getAcessoriosByVeiculo($id);
                 $this->load->model('Veiculo_Model');
@@ -69,11 +69,11 @@ class VeiculoAcessorio extends CI_Controller {
             } else {
                 $data = array('acessorio_id' => $this->input->post('Acessorio'), 'veiculo_id' => $this->input->post('Veiculo'));
                 if ($this->VeiculoAcessorio_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com sucesso</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Alterado Acessório do Veículo com Sucesso!</div>');
                     redirect('VeiculoAcessorio/listar/' . $veiculo_id);
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Adicionar Acessório!!!</div>');
-                    redirect('Veiculo/incluirAcessorios' . $veiculo_id);
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Alterar Acessório!!!</div>');
+                    redirect('VeiculoAcessorio/listar/' . $veiculo_id);
                 }
             }
         } else {
@@ -85,7 +85,7 @@ class VeiculoAcessorio extends CI_Controller {
         if (($id > 0)) {
 
             if ($this->VeiculoAcessorio_Model->deleteAcessorios($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório deletado do Veículo com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Deletado do Veículo com Sucesso!</div>');
             } else {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Acessório do Veículo...</div>');
             }

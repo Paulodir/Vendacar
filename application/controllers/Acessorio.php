@@ -27,8 +27,8 @@ class Acessorio extends CI_Controller {
     }
 
     public function cadastrar() {
-        $this->form_validation->set_rules('Acessorio', 'Acessorio', 'required');
-        $this->form_validation->set_rules('Tipo', 'Tipo', 'required');
+        $this->form_validation->set_rules('Acessorio', 'Acessório', 'required');
+        $this->form_validation->set_rules('Tipo', 'Tipo do Acessório', 'required');
         $this->form_validation->set_rules('Valor', 'Valor', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('Fixo/Header');
@@ -42,10 +42,10 @@ class Acessorio extends CI_Controller {
                 'valorAcessorio' => $this->input->post('Valor')
             );
             if ($this->Acessorio_Model->insert($data)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessorio cadastrado com sucesso</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Cadastrado com Sucesso!</div>');
                 redirect('Acessorio/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao cadastrar Acessorio!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Acessório!!!</div>');
                 redirect('Acessorio/cadastrar');
             }
         }
@@ -53,8 +53,8 @@ class Acessorio extends CI_Controller {
 
     public function alterar($id) {
         if ($id > 0) {
-            $this->form_validation->set_rules('Acessorio', 'Acessorio', 'required');
-            $this->form_validation->set_rules('Tipo', 'Tipo', 'required');
+            $this->form_validation->set_rules('Acessorio', 'Acessório', 'required');
+            $this->form_validation->set_rules('Tipo', 'Tipo do Acessório', 'required');
             $this->form_validation->set_rules('Valor', 'Valor', 'required');
             if ($this->form_validation->run() == false) {
                 $data['acessorio'] = $this->Acessorio_Model->getOne($id);
@@ -68,10 +68,10 @@ class Acessorio extends CI_Controller {
                     'valorAcessorio' => $this->input->post('Valor')
                 );
                 if ($this->Acessorio_Model->update($id, $data)) {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessorio alterado com sucesso!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Alterado com Sucesso!</div>');
                     redirect('Acessorio/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar Acessorio...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Acessório...</div>');
                     redirect('Acessorio/alterar/' . $id);
                 }
             }
@@ -83,9 +83,9 @@ class Acessorio extends CI_Controller {
     public function deletar($id) {
         if ($id > 0) {
             if ($this->Acessorio_Model->delete($id)) {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessorio deletado com sucesso!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Acessorio...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Acessório...</div>');
             }
         }
         redirect('Acessorio/listar');

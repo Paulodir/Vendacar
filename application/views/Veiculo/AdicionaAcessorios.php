@@ -45,7 +45,7 @@
                     </select>
                 </div>
                 <div class="text-center mb-5">
-                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> Adicionar</button>
+                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i> <?=(isset($veiculo)) === true ? 'Adicionar' : 'Alterar' ?></button>
                     <a class="btn btn-warning" href="<?= base_url('Veiculo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
                 </div>
             </form>
