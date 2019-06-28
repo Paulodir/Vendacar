@@ -34,19 +34,11 @@
                     <label for="Categoria">Categoria de Veículo</label>
                     <select class="form-control" id="Categoria" name="Categoria">
                         <option value="">Selecione uma Categoria de Veículo</option>;
-                        <option <?= (isset($modelo))&&(($modelo->tipoModelo) == 1) ? ' selected ' : ''; ?>value="1">Carro</option>
-                        <option <?= (isset($modelo))&&(($modelo->tipoModelo) == 2) ? ' selected ' : ''; ?>value="2">Moto</option>
-                        <option <?= (isset($modelo))&&(($modelo->tipoModelo) == 3) ? ' selected ' : ''; ?>value="3">Caminhão</option>
+                        <option <?= (isset($modelo)) && (($modelo->tipoModelo) == 1) ? ' selected ' : ''; ?>value="1">Carro</option>
+                        <option <?= (isset($modelo)) && (($modelo->tipoModelo) == 2) ? ' selected ' : ''; ?>value="2">Moto</option>
+                        <option <?= (isset($modelo)) && (($modelo->tipoModelo) == 3) ? ' selected ' : ''; ?>value="3">Caminhão</option>
                     </select>
                 </div>
-
-
-
-                <?php /* echo '<option ' . (($marca->id == $veiculo->marca_id) ? 'selected' : null) . ' value="' . $marca->id . '">' . $marca->nome . '</option>';
-                  if (strlen($_POST['cpf']) < 30) {
-                  echo '<span style="color: red"><i class="fas fa-exclamation-circle"></i>A descrição deve conter pelo menos 30 caracteres, Total é ' . strlen($_POST['cpf']) . '.</span>';
-                 */ ?>
-
                 <div class="text-center mb-5">
                     <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($modelo)) === true ? ' Alterar' : ' Salvar' ?></button>
                     <a class="btn btn-warning" href="<?= base_url('Modelo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 

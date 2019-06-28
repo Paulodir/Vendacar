@@ -46,7 +46,7 @@ class VeiculoAcessorio extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório adicionado ao Veículo com Sucesso!</div>');
                 redirect('VeiculoAcessorio/listar/' . $id);
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Adicionar Acessório!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Adicionar Acessório!!!</div>');
                 redirect('Veiculo/incluirAcessorios' . $id);
             }
         }
@@ -72,7 +72,7 @@ class VeiculoAcessorio extends CI_Controller {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Alterado Acessório do Veículo com Sucesso!</div>');
                     redirect('VeiculoAcessorio/listar/' . $veiculo_id);
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Alterar Acessório!!!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Alterar Acessório!!!</div>');
                     redirect('VeiculoAcessorio/listar/' . $veiculo_id);
                 }
             }
@@ -87,7 +87,7 @@ class VeiculoAcessorio extends CI_Controller {
             if ($this->VeiculoAcessorio_Model->deleteAcessorios($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Deletado do Veículo com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Acessório do Veículo...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Acessório do Veículo...</div>');
             }
         }
         redirect('VeiculoAcessorio/listar/' . $veiculo_id);

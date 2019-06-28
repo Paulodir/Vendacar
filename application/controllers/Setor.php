@@ -41,7 +41,7 @@ class Setor extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor Cadastrado com Sucesso!</div>');
                 redirect('Setor/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Setor!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Setor!!!</div>');
                 redirect('Setor/cadastrar');
             }
         }
@@ -63,7 +63,7 @@ class Setor extends CI_Controller {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor Alterado com Sucesso!</div>');
                     redirect('Setor/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Setor...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Setor...</div>');
                     redirect('Setor/alterar/' . $id);
                 }
             }
@@ -77,7 +77,7 @@ class Setor extends CI_Controller {
             if ($this->Setor_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Setor Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Setor...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Setor...</div>');
             }
         }
         redirect('Setor/listar');

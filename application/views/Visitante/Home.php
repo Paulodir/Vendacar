@@ -1,7 +1,25 @@
-<?= validation_errors();//var_dump($foto);?>
-
-
 <div class="container">
+<!--    <hr class="featurette-divider">
+    <form class="form-inline my-2 my-lg-0">
+        <input type="hidden" name="id" value="">
+        <div class="form-group">
+            <label for="Veiculo">Pesquizar</label>
+            <select class="form-control" id="Veiculo" name="Veiculo">
+
+                <?php
+//                if (count($resultados) > 0) {
+//                    echo '<option value="">&#x02315 Procurar Veículo</option>';
+//                    foreach ($resultados as $r) {
+//                        echo '<option data-target="#seleciona" value="' . $r->id . '">' . $r->nomeVeiculo . '</option>' .'<a id="seleciona" type="submit" href=" <?= base_url("Visitante/Veiculo") . "/" . $v->id ?>"/>'. PHP_EOL;
+//                    }
+//                } else {
+//                    echo '<option value="">&#x02315 Nenhum Veículo Cadastrado</option>';
+//                }
+                ?> 
+                
+            </select>
+        </div>
+    </form>-->
     <?php
     if (count($veiculos) > 0) {
         foreach ($veiculos as $v) {
@@ -24,9 +42,8 @@
             echo '</div>';
             echo '<div class="col-md-5 order-md-1">';
             foreach ($foto as $primeira) {
-                if ($primeira->veiculo_id == $v->id) 
+                if ($primeira->veiculo_id == $v->id)
                     echo '<img class="col-md-12" width="500" height="300" src="' . base_url('Uploads/' . $v->id . '/' . $primeira->nome) . '">';
-                
             }
             echo '</div>';
             echo '</div>';

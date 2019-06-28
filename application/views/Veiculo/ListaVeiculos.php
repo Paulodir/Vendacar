@@ -7,7 +7,7 @@
     </nav> 
     <?= ($this->session->flashdata('retorno')) ? $this->session->flashdata('retorno') : ''; ?>
     <?= validation_errors(); ?>
-    <div class="table-responsive">
+    <div class="table-responsive">         
         <table class="table table-striped display" style="width:100%">        
             <thead class="thead-dark">
                 <tr>
@@ -16,7 +16,7 @@
                     <th>Cor</th>
                     <th>Placa</th>
                     <th>Preço</th>
-                    <th>Adicionar</th>
+                    <th><span class="icon-bell"></span></th>
                     <th>Ações</th>
                 </tr>
             </thead>        

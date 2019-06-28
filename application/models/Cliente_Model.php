@@ -5,7 +5,7 @@ class Cliente_Model extends CI_Model {
     const table = 'cliente';
 
     public function getAll() {
-        $this->db->select('cliente.*,');
+        $this->db->select("cliente.*,DATE_FORMAT(dataNascimento,'%d/%m/%Y') AS nascimento");
         $this->db->select('(SELECT COUNT(cliente_id) FROM notafiscal WHERE cliente_id=cliente.id) as clienteEmUso');
         $this->db->from(self::table);
         $query = $this->db->get();

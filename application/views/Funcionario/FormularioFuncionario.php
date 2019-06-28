@@ -43,11 +43,11 @@
 
                 <div class="form-group">
                     <label for="Bairro">Bairro</label>
-                    <input class="form-control" type="text" name="Bairro" id="Bairro" value="<?= (isset($funcionario)) ? $funcionario->bairro : set_value('Bairro');?>">
+                    <input class="form-control" type="text" name="Bairro" id="Bairro" value="<?= (isset($funcionario)) ? $funcionario->bairro : set_value('Bairro'); ?>">
                 </div>
                 <div class="form-group">
                     <label for="Cidade">Cidade</label>
-                    <input class="form-control" type="text" name="Cidade" id="Cidade" value="<?= (isset($funcionario)) ? $funcionario->cidade : set_value('Cidade');?>">
+                    <input class="form-control" type="text" name="Cidade" id="Cidade" value="<?= (isset($funcionario)) ? $funcionario->cidade : set_value('Cidade'); ?>">
                 </div>
                 <div class="form-group">
                     <label for="Estado">Estado</label>
@@ -58,14 +58,34 @@
                     <input class="form-control" type="text" name="Celular" id="Celular" value="<?= (isset($funcionario)) ? $funcionario->celular : set_value('Celular'); ?>">
                 </div>
                 <div class="form-group">
-                    <label for="Salario">Salário</label>
-                    <input class="form-control" type="text" name="Salario" id="Salario" value="<?= (isset($funcionario)) ? $funcionario->salario : set_value('Salario'); ?>">
-                </div>
-                <div class="text-center mb-5">
-                    <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($funcionario)) === true ? ' Alterar' : ' Salvar' ?></button>
-                    <a class="btn btn-warning" href="<?= base_url('Funcionario/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
-                </div>
+                    <label for="Setor">Setor</label>
+                    <select class="form-control" id="Montadora" name="Setor">
+                        <?php
+                        if (count($setores) > 0) {
+                            echo '<option value="">Selecione um Setor</option>';
+                            foreach ($setores as $setor) {
+                                echo '<option ' . (($setor->id == $funcionario->setor_id) ? 'selected' : '') . ' value="' . $setor->id . '">' . $setor->nomeSetor . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">Nenhum Setor Cadastrado.</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="form-group">
+                        <label for="Salario">Salário</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">R$</span>
+                            </div>
+                            <input class="form-control" type="text" name="Salario" id="Salario" value="<?= (isset($funcionario)) ? $funcionario->salario : set_value('Salario'); ?>">
+                        </div>
+                    </div>
+                    <div class="text-center mb-5">
+                        <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($funcionario)) === true ? ' Alterar' : ' Salvar' ?></button>
+                        <a class="btn btn-warning" href="<?= base_url('Funcionario/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
+                    </div>
             </form>
         </div>
     </div>
+</div>
 </div>

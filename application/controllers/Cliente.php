@@ -28,10 +28,10 @@ class Cliente extends CI_Controller {
 
     public function cadastrar() {
         $this->form_validation->set_rules('Nome', 'Nome', 'required');
-        $this->form_validation->set_rules('CpfCnpj', 'Cpf ou Cnpj', 'required');
+        $this->form_validation->set_rules('cpfCnpj', 'Cpf ou Cnpj', 'required');
         $this->form_validation->set_rules('RgIe', 'Rg ou Inscrição Estadual', 'required');
         $this->form_validation->set_rules('Genero', 'Gênero', 'required');
-        $this->form_validation->set_rules('Nascimento', 'Data de Nascimento', 'required');
+        $this->form_validation->set_rules('Nascimento', 'Data de Nascimento ou Fundação', 'required');
         $this->form_validation->set_rules('Endereco', 'Endereço', 'required');
         $this->form_validation->set_rules('Bairro', 'Bairro', 'required');
         $this->form_validation->set_rules('Cidade', 'Cidade', 'required');
@@ -45,8 +45,8 @@ class Cliente extends CI_Controller {
             $this->load->model('Cliente_Model');
             $data = array(
                 'nomeCliente' => $this->input->post('Nome'),
-                'cnpjCpf' => $this->input->post('CpfCnpj'),
-                'ieRg' => $this->input->post('RgIe'),
+                'cnpjCpf' => $this->input->post('cpfCnpj'),
+                'ieRg' => strtoupper($this->input->post('RgIe')),
                 'genero' => $this->input->post('Genero'),
                 'dataNascimento' => $this->input->post('Nascimento'),
                 'endereco' => $this->input->post('Endereco'),
@@ -59,7 +59,7 @@ class Cliente extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Cliente Cadastrado com Sucesso!</div>');
                 redirect('Cliente/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Cliente!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Cliente!!!</div>');
                 redirect('Cliente/cadastrar');
             }
         }
@@ -68,7 +68,7 @@ class Cliente extends CI_Controller {
     public function alterar($id) {
         if ($id > 0) {
             $this->form_validation->set_rules('Nome', 'Nome', 'required');
-            $this->form_validation->set_rules('CpfCnpj', 'Cpf ou Cnpj', 'required');
+            $this->form_validation->set_rules('cpfCnpj', 'Cpf ou Cnpj', 'required');
             $this->form_validation->set_rules('RgIe', 'Rg ou Inscrição Estadual', 'required');
             $this->form_validation->set_rules('Genero', 'Gênero', 'required');
             $this->form_validation->set_rules('Nascimento', 'Data de Nascimento', 'required');
@@ -85,7 +85,7 @@ class Cliente extends CI_Controller {
             } else {
                 $data = array(
                     'nomeCliente' => $this->input->post('Nome'),
-                    'cnpjCpf' => $this->input->post('CpfCnpj'),
+                    'cnpjCpf' => $this->input->post('cpfCnpj'),
                     'ieRg' => $this->input->post('RgIe'),
                     'genero' => $this->input->post('Genero'),
                     'dataNascimento' => $this->input->post('Nascimento'),
@@ -93,13 +93,13 @@ class Cliente extends CI_Controller {
                     'bairro' => $this->input->post('Bairro'),
                     'cidade' => $this->input->post('Cidade'),
                     'estado' => $this->input->post('Estado'),
-                    'celular' => $this->input->post('Celular')
+                    'celular' =>$this->input->post('Celular')
                 );
                 if ($this->Cliente_Model->update($id, $data)) {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Cliente Alterado com Sucesso!</div>');
                     redirect('Cliente/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Cliente...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Cliente...</div>');
                     redirect('Cliente/alterar/' . $id);
                 }
             }
@@ -113,7 +113,7 @@ class Cliente extends CI_Controller {
             if ($this->Cliente_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Cliente Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Cliente...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Cliente...</div>');
             }
         }
         redirect('Cliente/listar');

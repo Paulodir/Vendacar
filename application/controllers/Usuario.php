@@ -40,7 +40,7 @@ class Usuario extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário Cadastrado com Sucesso!</div>');
                 redirect('Usuario/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Usuário!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Usuário!!!</div>');
                 redirect('Usuario/cadastrar');
             }
         }
@@ -65,12 +65,12 @@ class Usuario extends CI_Controller {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Dados do Usuário Alterado com Sucesso!</div>');
                     redirect('Usuario/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Alterar Usuário!!!</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Alterar Usuário!!!</div>');
                     redirect('Usuario/alterar/' . $id);
                 }
             }
         } else {
-            $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Usuário Inválido!!!</div>');
+            $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Usuário Inválido!!!</div>');
             redirect('Usuario/listar');
         }
     }
@@ -81,7 +81,7 @@ class Usuario extends CI_Controller {
             if ($this->Usuario_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Usuário...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Usuário...</div>');
             }
         }
         redirect('Setor/listar');
@@ -109,11 +109,11 @@ class Usuario extends CI_Controller {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Senha Alterada com Sucesso!</div>');
                     redirect('Usuario/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Senha...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Senha...</div>');
                     redirect('Usuario/Redefinir');
                 }
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Senha Atual Incorreta...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Senha Atual Incorreta...</div>');
                 redirect('Usuario/Redefinir');
             }
         }
@@ -142,7 +142,7 @@ class Usuario extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Usuário ' . $email . ' Logado.</div>');
                 redirect($this->config->base_url('Veiculo/listar'));
             } else {
-                $this->session->set_flashdata('retorno', '<div class=" alert alert-danger"><i class="far fa-hand-paper"></i> Usuário ou Senha Incoretos...</div>');
+                $this->session->set_flashdata('retorno', '<div class=" alert alert-danger"><i class="fas fa-ban"></i> Usuário ou Senha Incoretos...</div>');
             }redirect(base_url('Usuario/logar'));
         }
     }

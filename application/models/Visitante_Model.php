@@ -46,4 +46,15 @@ class Visitante_Model extends CI_Model {
         return $query->result();
     }
 
+//    public function search() {
+//        $this->db->select("veiculo.id, CONCAT(nomeMontadora, ' ',nomeModelo) AS 'nomeVeiculo'");
+//         $this->db->from('veiculo');
+//        $this->db->join('modelo', 'modelo.id = veiculo.modelo_id', 'inner');
+//        $this->db->join('montadora', 'montadora.id=modelo.montadora_id', 'inner');
+//        $this->db->order_by('nomeVeiculo', 'DESC');
+//        $query = $this->db->get();
+//        //echo $this->db->last_query();exit; 
+//        return $query->result();
+//    }
+
 }

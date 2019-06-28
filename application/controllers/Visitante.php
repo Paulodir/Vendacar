@@ -19,6 +19,7 @@ class Visitante extends CI_Controller {
         $data['foto'] = $this->Visitante_Model->getPrimeiraFoto();
         $data['veiculos'] = $this->Visitante_Model->getLastVeiculos();
         $data['acessorios'] = $this->Visitante_Model->getAcessorios();
+//        $data['resultados'] = $this->Visitante_Model->search();
         $this->load->view('Visitante/Header');
         $this->load->view('Visitante/Home', $data);
         $this->load->view('Visitante/Footer');
@@ -28,6 +29,7 @@ class Visitante extends CI_Controller {
         $data['foto'] = $this->Visitante_Model->getPrimeiraFoto();
         $data['veiculos'] = $this->Visitante_Model->getAllVeiculos();
         $data['acessorios'] = $this->Visitante_Model->getAcessorios();
+//        $data['resultados'] = $this->Visitante_Model->search();
         $this->load->view('Visitante/Header');
         $this->load->view('Visitante/Home', $data);
         $this->load->view('Visitante/Footer');

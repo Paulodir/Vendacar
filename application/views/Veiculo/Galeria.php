@@ -19,20 +19,19 @@
             <form method="post" action="" class="border rounded text-center" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="">
                 <h4 id="label-form" class="card-header bg-transparent "><i class="fas fa-edit"></i>Cadastro de Imagens</h4>
-
                 <div class="form-group ">
                     <label for="files">Escolha os arquivos</label>
-                    <input type="file" class="form-control-file input-group" id="files" name="files[]" multiple data-target="#fileSelect" />
+                    <input type="file" class="form-control-file input-group" id="files" name="files[]" accept="image/*" multiple data-target="#fileSelect" />
                     <a id="fileSelect" ></a>
                 </div>
                 <hr>            
-            <!--<div class="form-group">
-                    <label custom-file-label for="files">Insira imagens</label>
-                    <input type="file" id="files" name="files[]" multiple accept="image/*" style="display:none;" />
-                </div>
-                <a href="" id="fileSelect" ><h1><i class="fas fa-cloud-upload-alt"></i></h1></a>-->
+                <!--<div class="form-group">
+                        <label custom-file-label for="files">Insira imagens</label>
+                        <input type="file" id="files" name="files[]" multiple accept="image/*" style="display:none;" />
+                    </div>
+                    <a href="" id="fileSelect" ><h1><i class="fas fa-cloud-upload-alt"></i></h1></a>-->
                 <div class="form-group ">
-                    <div id="list"></div>
+                    <div id="visualiza"></div>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -46,21 +45,29 @@
             <form class="border rounded">
                 <h5 class="card-header bg-transparent ">Fotos na Galeria | <?= (isset($veiculo)) === true ? $veiculo->nomeVeiculo : 'Veículo Inválido' ?></h5>
                 <div class="row">
-                    <?php foreach ($fotos as $foto): ?>         
-                        <div class="col-md-4 mt-2 mb-1">
-                            <div class="col-12 text-center">
-                                <img class="img-thumbnail" src="<?= base_url('Uploads/' . $veiculo->id . '/' . $foto->nome) ?>" alt="Card image cap">
-                                <div class="text-center">
-                                    <a href="<?= base_url('Imagem/deletar/' . $veiculo->id . '/' . $foto->id) ?>" class="btn btn-sm btn-outline-danger mt-1" data-confirm="">Deletar</a>
-                                </div>
-                            </div>                        
+                    <?php if (!empty($fotos)) : foreach ($fotos as $foto): ?>         
+                            <div class="col-md-4 mt-2 mb-1">
+                                <div class="col-12 text-center">
+                                    <img class="img-thumbnail" src="<?= base_url('Uploads/' . $veiculo->id . '/' . $foto->nome) ?>" alt="Card image cap">
+                                    <div class="text-center">
+                                        <a href="<?= base_url('Imagem/deletar/' . $veiculo->id . '/' . $foto->id) ?>" class="btn btn-sm btn-outline-danger mt-1" data-confirm="">Deletar</a>
+                                    </div>
+                                </div>                        
+                            </div>
+                            <?php
+                        endforeach;
+                    else:
+                        ?>
+                        <div class="container">
+                            <h5 class="text-gray">Nenhuma imagem adicionada a Galeria deste veículo até o momento.</h5>
                         </div>
-                    <?php endforeach ?> 
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     var fileSelect = document.getElementById("fileSelect");
     var fileElem = document.getElementById("files");
@@ -72,7 +79,7 @@
     }
     , false);
     function handleFileSelect(evt) {
-        var list = document.getElementById("list").childElementCount;
+        var list = document.getElementById("visualiza").childElementCount;
         var files = evt.target.files;
         var qtde = files.length;
         var nomes = fileElem.files;
@@ -92,7 +99,7 @@
                         var span = document.createElement('span');
                         span.innerHTML =
                                 "<a href='#'><img  class='img-thumbnail miniatura'   src='" + e.target.result + "'" + "title='" + escape(theFile.name) + "'/>X</a>";
-                        document.getElementById('list').insertBefore(span, null);
+                        document.getElementById('visualiza').insertBefore(span, null);
                         span.children[0].addEventListener("click", function (evt) {
                             span.parentNode.removeChild(span);
                         });

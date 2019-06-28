@@ -15,9 +15,8 @@
                     <th>Cpf/ Cnpj</th>
                     <th>Rg / Ie</th>
                     <th>Gênero</th>
-                    <th>Nascimento</th>
+                    <th>Nascimento / Fundação</th>
                     <th>Endereço</th>
-                    <th>Bairro</th>
                     <th>Cidade</th>
                     <th>Estado</th>
                     <th>Celular</th>
@@ -41,9 +40,8 @@
                             echo ' Indefinido ';
                         }
                         echo '</td>';
-                        echo '<td>' . $c->dataNascimento . '</td>';
+                        echo '<td>' . $c->nascimento . '</td>';
                         echo '<td>' . $c->endereco . '</td>';
-                        echo '<td>' . $c->bairro . '</td>';
                         echo '<td>' . $c->cidade . '</td>';
                         echo '<td>' . $c->estado . '</td>';
                         echo '<td>' . $c->celular . '</td>';

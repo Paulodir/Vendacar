@@ -91,7 +91,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">R$</span>
                         </div>
-                        <input type="text" disabled id="ValorVeiculo" name="ValorVeiculo" class="form-control" value="">
+                        <input type="text" id="ValorVeiculo" name="ValorVeiculo" class="form-control" value="" disabled>
                     </div>
                 </div>
                 <div class="form-group">
@@ -105,7 +105,7 @@
                 </div>
                 <div class="text-center mb-5">
                     <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($veiculo)) === true ? ' Alterar' : ' Salvar' ?></button>
-                    <a class="btn btn-warning" href="<?= base_url('Modelo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
+                    <a class="btn btn-warning" href="<?= base_url('NotaFiscal/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
                 </div>
             </form>
         </div>
@@ -114,7 +114,6 @@
 <script src="<?= base_url('Incluir/AjaxJquery.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('Incluir/Jquery.Mask.js') ?>" type="text/javascript"></script>
 <script type="text/javascript">
-
     $(document).ready(function () {
         $(document).on('submit', 'form[name=notafiscal]', function () {
             $('#ValorVeiculo').removeAttr('disabled');

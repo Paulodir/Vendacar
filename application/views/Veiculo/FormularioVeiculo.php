@@ -61,46 +61,23 @@
                     <label for="Renavam">Renavam</label> 
                     <input type="text" class="form-control" name="Renavam" id="Renavam" value="<?= (isset($veiculo)) === true ? $veiculo->renavam : set_value('Renavam') ?>">
                 </div>
-                <!--                <div class="form-group">
-                                    <label for="Serie">Numero de Série</label> 
-                                    <input type="text" class="form-control" name="Serie" id="Serie" value="<? (isset($veiculo)) === true ? $veiculo->renavam : set_value('Serie') ?>">
-                                </div>-->
-                <label for="Valor">Valor</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">R$</span>
-                    </div>
-                    <input type="text" id="Valor" name="Valor" class="form-control" value="<?= (isset($veiculo)) === true ? $veiculo->valorVeiculo : set_value('Valor') ?>">
-                </div>
-<!--                <label for="fotos"> Fotos: </label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                        <input id="files" type="file[]" multiple name="userfile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Selecione um arquivo</label>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img class="col-md-4" src="<? (isset($veiculo) ? base_url('/Uploads/' . $veiculo->id . '/') : '') ?>" id="imagem" name="imagem" width="210" style="max-height:150px">
-                </div>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile04">
-                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                    </div>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Button</button>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img class="col-md-4" src="<? (isset($veiculo) ? base_url('/Uploads/' . $veiculo->id . '/') : '') ?>" id="imagem" name="imagem" width="210" style="max-height:150px">
+            <!--<div class="form-group">
+                    <label for="Serie">Numero de Série</label> 
+                    <input type="text" class="form-control" name="Serie" id="Serie" value="<? (isset($veiculo)) === true ? $veiculo->renavam : set_value('Serie') ?>">
                 </div>-->
-                <br>
+                <div class="form-group">
+                    <label for="Valor">Valor</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        <input type="text" id="Valor" name="Valor" class="form-control" value="<?= (isset($veiculo)) === true ? $veiculo->valorVeiculo : set_value('Valor') ?>">
+                    </div>
+                </div>
+
                 <div class="text-center mb-5">
                     <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($veiculo)) === true ? ' Alterar' : ' Salvar' ?></button>
-                    <a class="btn btn-warning" href="<?= base_url('Modelo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
+                    <a class="btn btn-warning" href="<?= base_url('Veiculo/listar'); ?>"><i class="fas fa-undo"></i> Cancelar</a> 
                 </div>
             </form>
         </div>
@@ -111,28 +88,19 @@
 <script type="text/javascript">
     $("#Renavam").mask("00000000000");
     $("#Placa").mask("AAA-0000");
-//    document.getElementById("files").onchange = function () {
-//        var reader = new FileReader();
-//
-//        reader.onload = function (e) {
-//            // get loaded data and render thumbnail.
-//            document.getElementById("imagem").src = e.target.result;
-//        };
-//
-//        // read the image file as a data URL.
-//        reader.readAsDataURL(this.files[0]);
-//    };
     $(document).ready(function () {
         var base_url = "<?= base_url() ?>"
-        $('#Montadora').change(function () {
+        $(document).on('change', '#Montadora', function () {
             $('#Modelo').attr('disabled', 'disabled');
             $('#Modelo').html('<option>Carregando...</option>');
             var montadora_id = $('#Montadora').val();
             $.post(base_url + 'Veiculo/getModelosAjax', {
                 montadora_id: montadora_id
             }, function (data) {
+                $('#Modelo').replaceWith('<select class="form-control" id="Modelo" name="Modelo"></select>');
                 $('#Modelo').html(data);
-                $('#Modelo').removeAttr('disabled');
+                $('#Modelo_chosen').remove();
+                $("#Modelo").chosen({no_results_text: "Nenhum registro compatível com "});
             });
         });
     });

@@ -31,7 +31,7 @@
                         echo '<td>' . $nf->nomeCliente . '</td>';
                         echo '<td>' . $nf->nomeVeiculo . '</td>';
                         echo '<td>' . $nf->nomeFuncionario . '</td>';
-                        echo '<td>' . $nf->dataEmissao . '</td>';
+                        echo '<td>' . $nf->dataHora . '</td>';
                         echo '<td> R$ ' . $nf->icms . '</td>';
                         echo '<td> R$ ' . $nf->valorFinal . '</td>';
                         echo '<td>';

@@ -7,6 +7,7 @@
         <title>VendaCar</title>
         <link href="<?= base_url('Incluir/Bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url('Incluir/FontAwesome.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url('Incluir/chosen.css') ?>" rel="stylesheet" type="text/css"/>
         <style type="text/css">
             .featurette-divider {
                 color: #f00;background-color: #f00;height: 1px;
@@ -33,6 +34,7 @@
         </style>
     </head>
     <body style="<?= 'background-image:url(' . base_url('Incluir/background.jpg') ?>">
+<!--        <?//var_dump($resultados);?>-->
         <header>
             <div class="row d-none d-md-block">
                 <img class="col-md-12 expand-md" height="175px" src="<?= base_url('Incluir/Header.jpg') ?>">
@@ -59,6 +61,7 @@
                     </ul>
 
                 </div>
+
                 <?php if ($this->session->userdata('logado')): ?>
                     <form class="form-inline mt-2 mt-md-0">
                         <a href="<?= base_url('Veiculo/Listar') ?>" class="btn btn-outline-success my-2 my-sm-0" >Área Administrativa</a>

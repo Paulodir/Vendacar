@@ -65,7 +65,7 @@ class NotaFiscal extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Nota Fiscal cadastrado com Sucesso!</div>');
                 redirect('NotaFiscal/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Nota Fiscal!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Nota Fiscal!!!</div>');
                 redirect('NotaFiscal/cadastrar');
             }
         }
@@ -112,7 +112,7 @@ class NotaFiscal extends CI_Controller {
 //                    $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> NotaFiscal alterado com sucesso!</div>');
 //                    redirect('NotaFiscal/listar');
 //                } else {
-//                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao alterar NotaFiscal...</div>');
+//                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao alterar NotaFiscal...</div>');
 //                    redirect('NotaFiscal/alterar/' . $id);
 //                }
 //            }
@@ -126,7 +126,7 @@ class NotaFiscal extends CI_Controller {
             if ($this->NotaFiscal_Model->cancel($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Nota Fiscal Cancelada com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Cancelar Nota Fiscal...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Cancelar Nota Fiscal...</div>');
             }
         }
         redirect('NotaFiscal/listar');

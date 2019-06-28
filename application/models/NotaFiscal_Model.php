@@ -5,7 +5,7 @@ class NotaFiscal_Model extends CI_Model {
     const table = 'notafiscal';
 
     public function getAll() {
-        $this->db->select("notafiscal.*");
+        $this->db->select("notafiscal.*,DATE_FORMAT(dataEmissao,'%d/%m/%Y %Hh:%im:%ss ') AS dataHora");
         $this->db->select(",CONCAT(nomeMontadora, ' ',nomeModelo) AS 'nomeVeiculo'");
         $this->db->select(",funcionario.nomeFuncionario");
         $this->db->select(",cliente.nomeCliente");

@@ -1,3 +1,4 @@
+
 <div class="container mt-3">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -16,11 +17,14 @@
                     <input class="form-control" type="text" name="Nome" id="Nome" value="<?= (isset($cliente)) ? $cliente->nomeCliente : set_value('Nome'); ?>">
                 </div>
                 <div class="form-group">
-                    <label for="CpfCnpj">Cpf</label>
-                    <input class="form-control" type="text" name="CpfCnpj" id="CpfCnpj" value="<?= (isset($cliente)) ? $cliente->cnpjCpf : set_value('CpfCnpj'); ?>">
+                    <label for="cpfCnpj">
+                        <input type="radio" name="seletorCpfCnpj" value="1"> Cpf
+                        <input type="radio" name="seletorCpfCnpj" value="2"> Cnpj
+                    </label>
+                    <input class="form-control" type="text" name="cpfCnpj" id="cpfCnpj" value="<?= (isset($cliente)) ? $cliente->cnpjCpf : set_value('cpfCnpj'); ?>">
                 </div>
                 <div class="form-group">
-                    <label for="RgIe">RG</label>
+                    <label id="labelRgIe" for="RgIe">RG ou Inscrição Estadual</label>
                     <input class="form-control" type="text" name="RgIe" id="RgIe" value="<?= (isset($cliente)) ? $cliente->ieRg : set_value('RgIe'); ?>">
                 </div>
                 <div class="form-group">
@@ -33,7 +37,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="Nascimento">Data de Nascimento</label>
+                    <label id="labelNascimento" for="Nascimento">Data de Nascimento ou Fundação</label>
                     <input class="form-control" type="date" name="Nascimento" id="Nascimento" value="<?= (isset($cliente)) ? $cliente->dataNascimento : set_value('Nascimento'); ?>">
                 </div>
                 <div class="form-group">
@@ -65,3 +69,36 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+//var options = {
+//    onKeyPress: function (cpf, ev, el, op) {
+//        var masks = ['000.000.000-000', '00.000.000/0000-00'];
+//        $('#cpfCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+//    }
+//}
+
+$('#cpfCnpj').length > 11 ? $('#cpfCnpj').mask('00.000.000/0000-00', options) : $('#cpfCnpj').mask('000.000.000-00#', options);
+        
+        $("input[name='seletorCpfCnpj']").click(function () {
+            var calcular = $("input[name='seletorCpfCnpj']:checked").val();
+            //alert(calcular);
+            $('#AcrescimoDesconto').on('keydown keyup click', function () {
+                if ($(this).attr('name') === 'ValorFinal') {
+                    return false;
+                };
+                var valor1 = ($('#ValorVeiculo').val() == '' ? 0 : $('#ValorVeiculo').val());
+                var valor2 = ($('#AcrescimoDesconto').val() == '' ? 0 : $('#AcrescimoDesconto').val());
+                if (calcular == 1) {
+                    var ValorFinal = (parseFloat(valor1) + parseFloat(valor2));
+                } else if (calcular == 2) {
+                    var ValorFinal = (parseFloat(valor1) - parseFloat(valor2));
+                };
+                if (!isNaN(ValorFinal)) {
+                    $('#ValorFinal').val(ValorFinal.toFixed(2))
+                };
+            });
+        });
+    });
+</script>

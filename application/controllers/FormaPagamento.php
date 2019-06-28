@@ -41,7 +41,7 @@ class FormaPagamento extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Forma de Pagamento Cadastrado com Sucesso!</div>');
                 redirect('FormaPagamento/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Forma de Pagamento!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Forma de Pagamento!!!</div>');
                 redirect('FormaPagamento/cadastrar');
             }
         }
@@ -63,7 +63,7 @@ class FormaPagamento extends CI_Controller {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Descriçao da Forma de Pagamento Alterada com Sucesso!</div>');
                     redirect('FormaPagamento/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Forma de Pagamento...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Forma de Pagamento...</div>');
                     redirect('FormaPagamento/alterar/' . $id);
                 }
             }
@@ -77,7 +77,7 @@ class FormaPagamento extends CI_Controller {
             if ($this->FormaPagamento_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Forma Pagamento Deletada com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Forma Pagamento...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Forma Pagamento...</div>');
             }
         }
         redirect('FormaPagamento/listar');

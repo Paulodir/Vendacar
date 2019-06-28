@@ -36,14 +36,16 @@ class Funcionario extends CI_Controller {
         $this->form_validation->set_rules('Bairro', 'Bairro', 'required');
         $this->form_validation->set_rules('Cidade', 'Cidade', 'required');
         $this->form_validation->set_rules('Estado', 'Estado', 'required');
+        $this->form_validation->set_rules('Setor', 'Setor', 'required');
         $this->form_validation->set_rules('Celular', 'Celular', 'required');
         $this->form_validation->set_rules('Salario', 'Salário', 'required');
         if ($this->form_validation->run() == false) {
+            $this->load->model('Setor_Model');
+            $data['setores'] = $this->Setor_Model->getAll();
             $this->load->view('Fixo/Header');
-            $this->load->view('Funcionario/FormularioFuncionario');
+            $this->load->view('Funcionario/FormularioFuncionario', $data);
             $this->load->view('Fixo/Footer');
         } else {
-            $this->load->model('Funcionario_Model');
             $data = array(
                 'nomeFuncionario' => $this->input->post('Nome'),
                 'cpf' => $this->input->post('Cpf'),
@@ -55,13 +57,14 @@ class Funcionario extends CI_Controller {
                 'cidade' => $this->input->post('Cidade'),
                 'estado' => $this->input->post('Estado'),
                 'celular' => $this->input->post('Celular'),
-                'salario' => $this->input->post('Salario')
+                'setor_id' => $this->input->post('Setor'),
+                'salario' => str_replace(',', '.', str_replace('.', '', $this->input->post('Salario')))
             );
             if ($this->Funcionario_Model->insert($data)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Funcionário Cadastrado com Sucesso!</div>');
                 redirect('Funcionario/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Funcionário!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Funcionário!!!</div>');
                 redirect('Funcionario/cadastrar');
             }
         }
@@ -79,9 +82,12 @@ class Funcionario extends CI_Controller {
             $this->form_validation->set_rules('Cidade', 'Cidade', 'required');
             $this->form_validation->set_rules('Estado', 'Estado', 'required');
             $this->form_validation->set_rules('Celular', 'Celular', 'required');
+            $this->form_validation->set_rules('Setor', 'Setor', 'required');
             $this->form_validation->set_rules('Salario', 'Salário', 'required');
             if ($this->form_validation->run() == false) {
                 $data['funcionario'] = $this->Funcionario_Model->getOne($id);
+                $this->load->model('Setor_Model');
+                $data['setores'] = $this->Setor_Model->getAll();
                 $this->load->view('Fixo/Header');
                 $this->load->view('Funcionario/FormularioFuncionario', $data);
                 $this->load->view('Fixo/Footer');
@@ -97,13 +103,14 @@ class Funcionario extends CI_Controller {
                     'cidade' => $this->input->post('Cidade'),
                     'estado' => $this->input->post('Estado'),
                     'celular' => $this->input->post('Celular'),
-                    'salario' => $this->input->post('Salario')
+                    'setor_id' => $this->input->post('Setor'),
+                    'salario' => str_replace(',', '.', str_replace('.', '', $this->input->post('Salario')))
                 );
                 if ($this->Funcionario_Model->update($id, $data)) {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Funcionário Alterado com Sucesso!</div>');
                     redirect('Funcionario/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Funcionário...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Funcionário...</div>');
                     redirect('Funcionario/alterar/' . $id);
                 }
             }
@@ -117,7 +124,7 @@ class Funcionario extends CI_Controller {
             if ($this->Funcionario_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Funcionário Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Funcionário...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Funcionário...</div>');
             }
         }
         redirect('Funcionario/listar');

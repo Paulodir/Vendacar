@@ -38,7 +38,7 @@ class Modelo extends CI_Controller {
         } else {
             $this->load->model('Modelo_Model');
             $data = array(
-                'nomeModelo' => $this->input->post('Modelo'),
+                'nomeModelo' => strtoupper($this->input->post('Modelo')),
                 'montadora_id' => $this->input->post('Montadora'),
                 'tipoModelo' => $this->input->post('Categoria')
             );
@@ -46,7 +46,7 @@ class Modelo extends CI_Controller {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo Cadastrado com Sucesso!</div>');
                 redirect('Modelo/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Modelo!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Modelo!!!</div>');
                 redirect('Modelo/cadastrar');
             }
         }
@@ -65,7 +65,7 @@ class Modelo extends CI_Controller {
                 $this->load->view('Fixo/Footer');
             } else {
                 $data = array(
-                    'nomeModelo' => $this->input->post('Modelo'),
+                    'nomeModelo' =>  strtoupper($this->input->post('Modelo')),
                     'montadora_id' => $this->input->post('Montadora'),
                     'tipoModelo' => $this->input->post('Categoria')
                 );
@@ -73,7 +73,7 @@ class Modelo extends CI_Controller {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo Alterado com Sucesso!</div>');
                     redirect('Modelo/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Modelo...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Modelo...</div>');
                     redirect('Modelo/alterar/' . $id);
                 }
             }
@@ -87,7 +87,7 @@ class Modelo extends CI_Controller {
             if ($this->Modelo_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Modelo Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Modelo...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Modelo...</div>');
             }
         }
         redirect('Modelo/listar');

@@ -39,13 +39,13 @@ class Acessorio extends CI_Controller {
             $data = array(
                 'descricaoAcessorio' => $this->input->post('Acessorio'),
                 'tipoAcessorio' => $this->input->post('Tipo'),
-                'valorAcessorio' => $this->input->post('Valor')
+                'valorAcessorio' => str_replace(',', '.', str_replace('.', '', $this->input->post('Valor')))
             );
             if ($this->Acessorio_Model->insert($data)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Cadastrado com Sucesso!</div>');
                 redirect('Acessorio/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Acessório!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Acessório!!!</div>');
                 redirect('Acessorio/cadastrar');
             }
         }
@@ -65,13 +65,13 @@ class Acessorio extends CI_Controller {
                 $data = array(
                     'descricaoAcessorio' => $this->input->post('Acessorio'),
                     'tipoAcessorio' => $this->input->post('Tipo'),
-                    'valorAcessorio' => $this->input->post('Valor')
+                    'valorAcessorio' =>str_replace(',', '.', str_replace('.', '', $this->input->post('Valor')))
                 );
                 if ($this->Acessorio_Model->update($id, $data)) {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Alterado com Sucesso!</div>');
                     redirect('Acessorio/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Acessório...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Acessório...</div>');
                     redirect('Acessorio/alterar/' . $id);
                 }
             }
@@ -85,7 +85,7 @@ class Acessorio extends CI_Controller {
             if ($this->Acessorio_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Acessório Deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Acessório...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Acessório...</div>');
             }
         }
         redirect('Acessorio/listar');

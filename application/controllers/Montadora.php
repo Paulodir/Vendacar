@@ -37,14 +37,14 @@ class Montadora extends CI_Controller {
             $this->load->view('Fixo/Footer');
         } else {
             $data = array(
-                'nomeMontadora' => $this->input->post('Nome'),
+                'nomeMontadora' =>  strtoupper($this->input->post('Nome')),
             );
             if ($this->Montadora_Model->insert($data)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Montadora Cadastrada com Sucesso!</div>');
                 redirect('Montadora/listar');
             } else {
                 unlink('./uploads/' . $data['imagem']);
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Montadora!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Montadora!!!</div>');
                 redirect('Montadora/cadastrar');
             }
         }
@@ -60,13 +60,13 @@ class Montadora extends CI_Controller {
                 $this->load->view('Fixo/Footer');
             } else {
                 $data = array(
-                    'nomeMontadora' => $this->input->post('Nome'),
+                    'nomeMontadora' =>  strtoupper($this->input->post('Nome')),
                 );
                 if ($this->Montadora_Model->update($id, $data)) {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Montadora Alterada com Sucesso!</div>');
                     redirect('Montadora/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Montadora...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Montadora...</div>');
                     redirect('Montadora/alterar/' . $id);
                 }
             }
@@ -84,10 +84,10 @@ class Montadora extends CI_Controller {
                 }
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Montadora Deletada com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Montadora...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Montadora...</div>');
             }
         } else {
-            $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Montadora não encontrada</div>');
+            $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Montadora não encontrada</div>');
         }
         redirect('Montadora/listar');
     }

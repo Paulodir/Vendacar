@@ -98,12 +98,18 @@
                         <th>Item de Série</th>
                     </tr>
                     <?php
+                    $itemSerie = "";
+                    $contaSerie = 0;
                     foreach ($veiculoacessorios as $item) {
                         if (($item->id == $veiculo->id) && ($item->tipoAcessorio == 1)) {
-                            echo'<tr><td>';
-                            echo $item->opcionais;
-                            echo '</td></tr>';
+                            $contaSerie++;
+                            $itemSerie.= '<tr><td>' . $item->opcionais . '</td></tr>';
                         }
+                    }
+                    if ($contaSerie > 0) {
+                        echo $itemSerie;
+                    } else {
+                        echo '<tr><td colspan="6">Nenhum item de série foi cadastrado</td></tr>';
                     }
                     ?>
                 </tbody>
@@ -116,20 +122,26 @@
                         <th>Item Opcional</th>
                     </tr>
                     <?php
+                    $itemOpcional = "";
+                    $contaOpcio = 0;
                     foreach ($veiculoacessorios as $item) {
                         if (($item->id == $veiculo->id) && ($item->tipoAcessorio == 2)) {
-                            echo'<tr><td>';
-                            echo $item->opcionais;
-                            echo '</td></tr>';
+                            $contaOpcio++;
+                            $itemOpcional .= '<tr><td>' . $item->opcionais . '</td></tr>';
                         }
+                    }
+                    if ($contaOpcio > 0) {
+                        echo $itemOpcional;
+                    } else {
+                        echo '<tr><td colspan="6">Nenhum item opcional foi cadastrado.</td></tr>';
                     }
                     ?>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-4">
+<!--        <div class="col-md-4">
             <iframe  class="col-md-12" src="<?= base_url('Visitante/contato') ?>" width="300" height="600" name="lugar" noresize></iframe>
-        </div>
+        </div>-->
     </div>
     <hr class="featurette-divider">
 </div>

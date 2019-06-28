@@ -23,12 +23,14 @@
                         <option <?= (isset($acessorio)) && (($acessorio->tipoAcessorio) == 2) ? ' selected ' : ''; ?>value="2">Item Opcional</option>
                     </select>
                 </div>
-                <label for="Valor">Valor</label>
-                <div class="input-group mb-3">                    
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">R$</span>
+                <div class="form-group">                
+                    <label for="Valor">Valor</label>
+                    <div class="input-group mb-3">                    
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        <input type="text" id="Valor" name="Valor" class="form-control" value="<?= (isset($acessorio)) === true ? $acessorio->valorAcessorio : set_value('Valor') ?>">
                     </div>
-                    <input type="text" id="Valor" name="Valor" class="form-control" value="<?= (isset($acessorio)) === true ? $acessorio->valorAcessorio : set_value('Valor') ?>">
                 </div>
                 <div class="text-center mb-5">
                     <button class="btn btn-success" type="submit"><i class="fas fa-check"></i><?= (isset($acessorio)) === true ? ' Alterar' : ' Salvar' ?></button>

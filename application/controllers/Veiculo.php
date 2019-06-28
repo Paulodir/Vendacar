@@ -37,20 +37,21 @@ class Veiculo extends CI_Controller {
             $this->load->view('Veiculo/FormularioVeiculo', $data);
             $this->load->view('Fixo/Footer');
         } else {
+            $this->load->model('Setor_Model');
             $this->load->model('Veiculo_Model');
             $data = array(
                 'modelo_id' => $this->input->post('Modelo'),
                 'Ano' => $this->input->post('Ano'),
                 'cor' => $this->input->post('Cor'),
-                'placa' => $this->input->post('Placa'),
+                'placa' => strtoupper($this->input->post('Placa')),
                 'renavam' => $this->input->post('Renavam'),
-                'valorVeiculo' => $this->input->post('Valor')
+                'valorVeiculo' => str_replace(',', '.', str_replace('.', '', $this->input->post('Valor')))
             );
             if ($this->Veiculo_Model->insert($data)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veículo Cadastrado com Sucesso!</div>');
                 redirect('Veiculo/listar');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Erro ao Cadastrar Veículo!!!</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Erro ao Cadastrar Veículo!!!</div>');
                 redirect('Veiculo/cadastrar');
             }
         }
@@ -65,7 +66,7 @@ class Veiculo extends CI_Controller {
         $modelos = $this->Veiculo_Model->getModelosByMontadora($montadora_id);
         $options = '<option>Selecione o Modelo</option>';
         foreach ($modelos as $modelo) {
-            $options .= '<option value=' . $modelo->id . '">' . $modelo->nomeModelo . '</option>' . PHP_EOL;
+            $options .= '<option value="' . $modelo->id . '">' . $modelo->nomeModelo . '</option>' . PHP_EOL;
         }
         return $options;
         //$this->db->last_query();exit;
@@ -90,17 +91,17 @@ class Veiculo extends CI_Controller {
             } else {
                 $data = array(
                     'modelo_id' => $this->input->post('Modelo'),
-                    'Ano' => $this->input->post('Ano'),
+                    'Ano' => $this->input->post('Ano'), 
                     'cor' => $this->input->post('Cor'),
-                    'placa' => $this->input->post('Placa'),
+                    'placa' => strtoupper($this->input->post('Placa')),
                     'renavam' => $this->input->post('Renavam'),
-                    'valorVeiculo' => $this->input->post('Valor')
+                    'valorVeiculo' => str_replace(',', '.', str_replace('.', '', $this->input->post('Valor')))
                 );
                 if ($this->Veiculo_Model->update($id, $data)) {
                     $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veículo Alterado com Sucesso!</div>');
                     redirect('Veiculo/listar');
                 } else {
-                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Alterar Veículo...</div>');
+                    $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Alterar Veículo...</div>');
                     redirect('Veiculo/alterar/' . $id);
                 }
             }
@@ -114,7 +115,7 @@ class Veiculo extends CI_Controller {
             if ($this->Veiculo_Model->delete($id)) {
                 $this->session->set_flashdata('retorno', '<div class="alert alert-success"><i class="fas fa-check-double"></i> Veiculo deletado com Sucesso!</div>');
             } else {
-                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="far fa-hand-paper"></i> Falha ao Deletar Veiculo...</div>');
+                $this->session->set_flashdata('retorno', '<div class="alert alert-danger"><i class="fas fa-ban"></i> Falha ao Deletar Veiculo...</div>');
             }
         }
         redirect('Veiculo/listar');
@@ -129,6 +130,7 @@ class Veiculo extends CI_Controller {
         $veiculo_id = $this->input->post('veiculo_id');
         $valorVeiculo = $this->Veiculo_Model->getValorVeiculo($veiculo_id);
         foreach ($valorVeiculo as $valor)
-        echo $valor->valorVeiculo;
+            echo $valor->valorVeiculo;
     }
+
 }
