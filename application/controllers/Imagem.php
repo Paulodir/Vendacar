@@ -7,7 +7,8 @@ class Imagem extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        // Load file model
+        $this->load->model('Usuario_Model');
+        $this->Usuario_Model->verificaLogin();
         $this->load->model('Imagem_Model');
     }
 
