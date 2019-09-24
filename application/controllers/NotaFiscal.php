@@ -22,7 +22,7 @@ class NotaFiscal extends CI_Controller {
     public function listar() {
         $data['notasfiscais'] = $this->NotaFiscal_Model->getAll();
         $this->load->view('Fixo/Header');
-        $this->load->view('NotaFiscal/lista', $data);
+        $this->load->view('NotaFiscal/Lista', $data);
         $this->load->view('Fixo/Footer');
     }
 

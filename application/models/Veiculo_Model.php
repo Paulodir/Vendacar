@@ -40,8 +40,7 @@ class Veiculo_Model extends CI_Model {
     }
 
     public function getOne($id) {
-        $this->db->select("veiculo.*,CONCAT(nomeMontadora,' ',nomeModelo) AS 'nomeVeiculo',");
-        $this->db->select('(SELECT montadora_id WHERE modelo_id=modelo.id) AS montadora_id');
+        $this->db->select("veiculo.*,CONCAT(nomeMontadora,' ',nomeModelo) AS 'nomeVeiculo',montadora_id");
         $this->db->join('modelo', 'modelo.id = veiculo.modelo_id', 'inner');
         $this->db->join('montadora', 'montadora.id=modelo.montadora_id', 'inner');
         $query = $this->db->get_where(self::table, array('veiculo.id' => $id));
